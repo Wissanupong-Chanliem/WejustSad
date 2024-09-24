@@ -72,8 +72,8 @@ class Game():
             "Kanit-Header": pygame.font.Font("static/font/Kanit-Regular.ttf",32)
         })
         resources.add_images({
-            "ijudge-mascot": pygame.image.load("static/ijudge-mascot.jpg"),
-            "pupe-sad": pygame.image.load("static/PupeSad.png")
+            "ijudge-mascot": pygame.image.load("static/images/ijudge-mascot.jpg"),
+            "pupe-sad": pygame.image.load("static/images/PupeSad.png")
         })
         return resources
 
