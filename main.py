@@ -91,7 +91,7 @@ class Game():
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("IjustSad")
-        self.screen = pygame.display.set_mode((1440,900))
+        self.screen = pygame.display.set_mode((1000,700))
         self.screen.fill(WHITE)
         self.resources = self.load_resource()
         self.pages:dict[str,Page] = {
