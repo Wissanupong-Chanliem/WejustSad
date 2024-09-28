@@ -1,4 +1,5 @@
 import pygame
+from pygame.event import Event
 from classes import Page,Resource
 from components.text import Text
 from components.button import Button
@@ -22,7 +23,7 @@ class MainMenuPage(Page):
             .set_coordinate((screen_rect.centerx,screen_rect.height - 200),origin_center = True)
         )
         self.title_text = (
-            Text(resources.fonts["Kanit-Title"],"I just Sad ;-;",PUPE_CYAN)
+            Text(resources.fonts["Kanit-Title"],"{v}JustSad ;-;",PUPE_CYAN)
             .set_coordinate((screen_rect.centerx,100),origin_center = True)
         )
     def render(self):
@@ -50,8 +51,41 @@ class TopicPage(Page):
             Text(resources.fonts["Kanit-Title"],"Topic",BLACK)
             .set_coordinate((self.screen_ref.get_rect().centerx,100),origin_center = True)
         )
+        self.start_button = (
+            Button(200,80,PUPE_CYAN,4)
+            .add_text(resources.fonts["Kanit-Header"],"Start!!!",BLACK)
+            .set_coordinate((self.screen_ref.get_width()-200,800),origin_center=True)
+        )
     def render(self):
         self.title_text.render(self.screen_ref)
+        self.start_button.render(self.screen_ref)
+    def update(self, event: Event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # Classic Mode button is clicked
+            if self.start_button.button_rect.collidepoint(pygame.mouse.get_pos()):
+                self.redirect_to("HangMan")
+
+class HangManPage(Page):
+    def __init__(self,screen:pygame.Surface,resources):
+        Page.__init__(self,screen,resources)
+        self.title_text = (
+            Text(resources.fonts["Kanit-Title"],"Hang Man",BLACK)
+            .set_coordinate((self.screen_ref.get_rect().centerx,100),origin_center = True)
+        )
+        self.menu_button = (
+            Button(300,80,PUPE_CYAN,4)
+            .add_text(resources.fonts["Kanit-Header"],"Back to Main Menu",BLACK)
+            .set_coordinate((self.screen_ref.get_width()-200,800),origin_center=True)
+        )
+    def render(self):
+        self.title_text.render(self.screen_ref)
+        self.menu_button.render(self.screen_ref)
+    def update(self, event: Event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # Classic Mode button is clicked
+            if self.menu_button.button_rect.collidepoint(pygame.mouse.get_pos()):
+                self.redirect_to("MainMenu")
+
 
 class Game():
     def __init__(self):
@@ -62,7 +96,8 @@ class Game():
         self.resources = self.load_resource()
         self.pages:dict[str,Page] = {
             "MainMenu":MainMenuPage(self.screen,self.resources),
-            "Topic":TopicPage(self.screen,self.resources)
+            "Topic":TopicPage(self.screen,self.resources),
+            "HangMan":HangManPage(self.screen,self.resources)
         }
 
     def load_resource(self) -> Resource:
@@ -83,7 +118,7 @@ class Game():
         while running:
             if current_page.redirect:
                 to = current_page.redirect
-                current_page.redirect = None
+                current_page.reset()
                 current_page = self.pages[to]
                 self.screen.fill(WHITE)
             for event in pygame.event.get():

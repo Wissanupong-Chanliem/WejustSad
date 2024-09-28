@@ -18,3 +18,5 @@ class Page():
         self.redirect = new_page
     def update(self, event:pygame.event.Event):
         pass
+    def reset(self):
+        self.__init__(self.screen_ref,self.resources)
