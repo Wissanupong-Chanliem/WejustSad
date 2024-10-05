@@ -3,6 +3,9 @@ from pygame.event import Event
 from classes import Page,Resource
 from components.text import Text
 from components.button import Button
+from components.topicpage.topic_select import TopicList
+from function.read_word_list import read_word_list
+from function.read_wordlist_folder import read_wordlist_dir
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 128)
@@ -56,9 +59,12 @@ class TopicPage(Page):
             .add_text(resources.fonts["Kanit-Header"],"Start!!!",BLACK)
             .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
         )
+        self.topic_selection = TopicList(read_wordlist_dir(),resources)
+
     def render(self):
         self.title_text.render(self.screen_ref)
         self.start_button.render(self.screen_ref)
+        self.topic_selection.render(self.screen_ref)
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
@@ -91,7 +97,7 @@ class Game():
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("IjustSad")
-        self.screen = pygame.display.set_mode((960, 720))
+        self.screen = pygame.display.set_mode((1080, 720))
         self.screen.fill(WHITE)
         self.resources = self.load_resource()
         self.pages:dict[str,Page] = {
@@ -104,7 +110,8 @@ class Game():
         resources = Resource()
         resources.add_fonts({
             "Kanit-Title": pygame.font.Font("static/font/Kanit-SemiBold.ttf",48),
-            "Kanit-Header": pygame.font.Font("static/font/Kanit-Regular.ttf",32)
+            "Kanit-Header": pygame.font.Font("static/font/Kanit-Regular.ttf",32),
+            "Kanit-Regular": pygame.font.Font("static/font/Kanit-Regular.ttf",20)
         })
         resources.add_images({
             "ijudge-mascot": pygame.image.load("static/images/ijudge-mascot.jpg"),

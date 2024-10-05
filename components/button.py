@@ -7,17 +7,20 @@ class Button():
         width:int,
         height:int,
         color:tuple[int,int,int],
-        border_radius = 0
+        border_radius = 0,
+        is_border = 0,
     ):
         self.button_rect = pygame.rect.Rect(0,0,width,height)
         self.color = color
         self.text = None
         self.text_rect = None
         self.border_radius = border_radius
+        self.is_border = is_border
 
     def render(self,screen:pygame.Surface):
-        pygame.draw.rect(screen,self.color,self.button_rect,border_radius=self.border_radius)
-        screen.blit(self.text,self.text_rect)
+        pygame.draw.rect(screen,self.color,self.button_rect,self.is_border,border_radius=self.border_radius)
+        if self.text:
+            screen.blit(self.text,self.text_rect)
 
     def add_text(
         self,
