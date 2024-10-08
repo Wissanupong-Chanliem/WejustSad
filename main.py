@@ -83,6 +83,7 @@ class HangManPage(Page):
             .add_text(resources.fonts["Kanit-Header"],"Back to Main Menu",BLACK)
             .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
         )
+        self.current_key = ""
     def render(self):
         self.title_text.render(self.screen_ref)
         self.menu_button.render(self.screen_ref)
@@ -91,6 +92,11 @@ class HangManPage(Page):
             # Classic Mode button is clicked
             if self.menu_button.button_rect.collidepoint(pygame.mouse.get_pos()):
                 self.redirect_to("MainMenu")
+        if event.type == pygame.KEYDOWN:
+            # Get input from keyboard
+            if event.unicode.isalpha():
+                self.current_key = event.unicode
+                print(f"Current key: {self.current_key}")
 
 
 class Game():
