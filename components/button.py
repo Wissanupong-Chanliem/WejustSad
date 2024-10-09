@@ -39,7 +39,7 @@ class Button():
         if origin_center:
             self.button_rect.center = (coordinate[0],coordinate[1])
         else:
-            self.button_rect.topleft = (coordinate[1],coordinate[0])
+            self.button_rect.topleft = (coordinate[0],coordinate[1])
         if self.text:
             self.text_rect.center = self.button_rect.center
         return self
