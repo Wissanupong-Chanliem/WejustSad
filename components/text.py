@@ -16,6 +16,6 @@ class Text():
         if origin_center:
             self.text_rect.center = (coordinate[0],coordinate[1])
         else:
-            self.text_rect.topleft = (coordinate[1],coordinate[0])
+            self.text_rect.topleft = (coordinate[0],coordinate[1])
         return self
 
