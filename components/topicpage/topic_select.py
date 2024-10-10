@@ -27,7 +27,7 @@ class TopicList():
             self.topics_elements[i].set_coordinate((self.position[1],self.position[0]+(i*90)-self.offset))
             self.topics_elements[i].render(self.border)
         screen.blit(self.border,(100,150))
-        self.offset += 1
+        #self.offset += 1
 
     def add_text(
         self,
