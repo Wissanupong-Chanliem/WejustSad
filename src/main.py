@@ -69,6 +69,7 @@ class TopicPage(Page):
             Text(resources.fonts["Kanit-Regular"],"< Main Menu",BLACK)
             .set_coordinate((100,40))
         )
+        
 
     def render(self):
         self.title_text.render(self.screen_ref)
@@ -76,6 +77,7 @@ class TopicPage(Page):
         self.topic_selection.render(self.screen_ref)
         self.add_wordlist_button.render(self.screen_ref)
         self.back_to_main_menu.render(self.screen_ref)
+        
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
@@ -87,18 +89,23 @@ class HangManPage(Page):
     def __init__(self,screen:pygame.Surface,resources):
         Page.__init__(self,screen,resources)
         self.title_text = (
-            Text(resources.fonts["Kanit-Title"],"Hang Man",BLACK)
-            .set_coordinate((self.screen_ref.get_rect().centerx,100),origin_center = True)
+            Text(resources.fonts["Kanit-Word"],"Hang Man",PUPE_CYAN)
+            .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
         )
         self.menu_button = (
             Button(300,80,PUPE_CYAN,4)
             .add_text(resources.fonts["Kanit-Header"],"Back to Main Menu",BLACK)
             .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
         )
+        self.score = (
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",PUPE_CYAN)
+            .set_coordinate((self.screen_ref.get_width()-150,20))
+        )
         self.current_key = ""
     def render(self):
         self.title_text.render(self.screen_ref)
         self.menu_button.render(self.screen_ref)
+        self.score.render(self.screen_ref)
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
@@ -130,8 +137,9 @@ class Game():
             "Kanit-Title": pygame.font.Font("static/font/Kanit-SemiBold.ttf",48),
             "Kanit-Header": pygame.font.Font("static/font/Kanit-Regular.ttf",32),
             "Kanit-Regular": pygame.font.Font("static/font/Kanit-Regular.ttf",20),
-            "Kanit-Header-2":pygame.font.Font("static/font/Kanit-Regular.ttf",40)
-
+            "Kanit-Header-2":pygame.font.Font("static/font/Kanit-Regular.ttf",40),
+            "Kanit-Word":pygame.font.Font("static/font/Kanit-SemiBold.ttf",58),
+            "Kanit-Bold-Regular-Size":pygame.font.Font("static/font/Kanit-SemiBold.ttf",40)
         })
         resources.add_images({
             "ijudge-mascot": pygame.image.load("static/images/ijudge-mascot.jpg"),
