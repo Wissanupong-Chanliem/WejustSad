@@ -1,7 +1,7 @@
 import pygame
 import pygame.draw_py
 from ..button import Button
-from classes import Resource
+from src.classes import Resource
 class TopicList():
     def __init__(
         self,

@@ -51,8 +51,8 @@ class TopicPage(Page):
     def __init__(self,screen:pygame.Surface,resources):
         Page.__init__(self,screen,resources)
         self.title_text = (
-            Text(resources.fonts["Kanit-Title"],"Topic",BLACK)
-            .set_coordinate((self.screen_ref.get_rect().centerx,100),origin_center = True)
+            Text(resources.fonts["Kanit-Header-2"],"Classic Mode",PUPE_CYAN)
+            .set_coordinate((100,60))
         )
         self.start_button = (
             Button(200,80,PUPE_CYAN,4)
@@ -65,18 +65,24 @@ class TopicPage(Page):
             .set_coordinate((300,600),origin_center=True)
             .add_text(resources.fonts["Kanit-Regular"],"Add Word List",BLACK)
         )
+        self.back_to_main_menu = (
+            Text(resources.fonts["Kanit-Regular"],"< Main Menu",BLACK)
+            .set_coordinate((100,40))
+        )
 
     def render(self):
         self.title_text.render(self.screen_ref)
         self.start_button.render(self.screen_ref)
         self.topic_selection.render(self.screen_ref)
         self.add_wordlist_button.render(self.screen_ref)
+        self.back_to_main_menu.render(self.screen_ref)
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
             if self.start_button.button_rect.collidepoint(pygame.mouse.get_pos()):
                 self.redirect_to("HangMan")
-
+            if self.back_to_main_menu.text_rect.collidepoint(pygame.mouse.get_pos()):
+                self.redirect_to("MainMenu")
 class HangManPage(Page):
     def __init__(self,screen:pygame.Surface,resources):
         Page.__init__(self,screen,resources)
@@ -123,7 +129,9 @@ class Game():
         resources.add_fonts({
             "Kanit-Title": pygame.font.Font("static/font/Kanit-SemiBold.ttf",48),
             "Kanit-Header": pygame.font.Font("static/font/Kanit-Regular.ttf",32),
-            "Kanit-Regular": pygame.font.Font("static/font/Kanit-Regular.ttf",20)
+            "Kanit-Regular": pygame.font.Font("static/font/Kanit-Regular.ttf",20),
+            "Kanit-Header-2":pygame.font.Font("static/font/Kanit-Regular.ttf",40)
+
         })
         resources.add_images({
             "ijudge-mascot": pygame.image.load("static/images/ijudge-mascot.jpg"),
