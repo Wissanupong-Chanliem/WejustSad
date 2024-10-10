@@ -60,11 +60,17 @@ class TopicPage(Page):
             .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
         )
         self.topic_selection = TopicList(read_wordlist_dir(),resources)
+        self.add_wordlist_button = (
+            Button(400,80,BLACK,4,1)
+            .set_coordinate((300,600),origin_center=True)
+            .add_text(resources.fonts["Kanit-Regular"],"Add Word List",BLACK)
+        )
 
     def render(self):
         self.title_text.render(self.screen_ref)
         self.start_button.render(self.screen_ref)
         self.topic_selection.render(self.screen_ref)
+        self.add_wordlist_button.render(self.screen_ref)
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
@@ -140,6 +146,7 @@ class Game():
                     pygame.quit()
                     quit()
                 current_page.update(event)
+            self.screen.fill((255,255,255))
             current_page.render()
             pygame.display.update()
 
