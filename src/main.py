@@ -117,7 +117,7 @@ class HangManPage(Page):
                 self.current_key = event.unicode
                 print(f"Current key: {self.current_key}")
 
-class GameOver(Page):
+class Game_Over(Page):
     def __init__(self,screen:pygame.Surface,resources):
         Page.__init__(self,screen,resources)
         self.title_text = (
