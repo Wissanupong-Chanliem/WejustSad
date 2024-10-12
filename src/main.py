@@ -123,6 +123,28 @@ class HangManPage(Page):
                 self.current_key = event.unicode
                 print(f"Current key: {self.current_key}")
 
+class GameOver(Page):
+    def __init__(self,screen:pygame.Surface,resources):
+        Page.__init__(self,screen,resources)
+        self.title_text = (
+            Text(resources.fonts["Kanit-Word"],"GAME OVER",PUPE_CYAN)
+            .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
+        )
+        self.menu_button = (
+            Button(300,80,PUPE_CYAN,4)
+            .add_text(resources.fonts["Kanit-Header"],"Back to Main Menu",BLACK)
+            .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
+        )
+        self.score = (
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",PUPE_CYAN)
+            .set_coordinate((self.screen_ref.get_width()-150,20))
+        )
+        self.current_key = ""
+    def render(self):
+        self.title_text.render(self.screen_ref)
+        self.menu_button.render(self.screen_ref)
+        self.score.render(self.screen_ref)
+
 
 class Game():
     def __init__(self):
