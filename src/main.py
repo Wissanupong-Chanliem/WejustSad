@@ -101,16 +101,22 @@ class HangManPage(Page):
             Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",PUPE_CYAN)
             .set_coordinate((self.screen_ref.get_width()-150,20))
         )
+        self.kanan_num = 0
+        self.kanan = (
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],str(self.kanan_num),PUPE_CYAN)
+            .set_coordinate((self.screen_ref.get_width()-111,70))
+        )
         self.current_key = ""
     def render(self):
         self.title_text.render(self.screen_ref)
         self.menu_button.render(self.screen_ref)
         self.score.render(self.screen_ref)
+        self.kanan.render(self.screen_ref)
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
             if self.menu_button.button_rect.collidepoint(pygame.mouse.get_pos()):
-                self.redirect_to("MainMenu")
+                self.redirect_to("GameOver")
         if event.type == pygame.KEYDOWN:
             # Get input from keyboard
             if event.unicode.isalpha():
