@@ -8,7 +8,8 @@ class Text():
     ):
         self.text = font.render(text,True,color)
         self.text_rect = self.text.get_rect()
-
+        self.font = font
+        self.color = color
     def render(self,screen:pygame.Surface):
         screen.blit(self.text,self.text_rect)
 
@@ -18,4 +19,7 @@ class Text():
         else:
             self.text_rect.topleft = (coordinate[0],coordinate[1])
         return self
+    def update_text(self,text):
+        self.text = self.font.render(text,True,self.color)
+        self.text_rect = self.text.get_rect()
 
