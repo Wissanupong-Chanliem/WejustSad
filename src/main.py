@@ -47,7 +47,7 @@ class MainMenuPage(Page):
             # Classic Mode button is clicked
             if self.classic_button.button_rect.collidepoint(pygame.mouse.get_pos()):
                 self.redirect_to("Topic")
-        
+
 class TopicPage(Page):
     def __init__(self,screen:pygame.Surface,resources):
         Page.__init__(self,screen,resources)
@@ -70,7 +70,7 @@ class TopicPage(Page):
             Text(resources.fonts["Kanit-Regular"],"< Main Menu",BLACK)
             .set_coordinate((100,40))
         )
-        
+
 
     def render(self):
         self.title_text.render(self.screen_ref)
@@ -94,19 +94,76 @@ class HangManPage(Page):
             .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
         )
         self.menu_button = (
-            Button(300,80,PUPE_CYAN,4)
-            .add_text(resources.fonts["Kanit-Header"],"Back to Main Menu",BLACK)
+            Button(250,80,PUPE_CYAN,4)
+            .add_text(resources.fonts["Kanit-Header"],"Confirm",BLACK)
             .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
         )
         self.score = (
             Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",PUPE_CYAN)
             .set_coordinate((self.screen_ref.get_width()-150,20))
         )
+        self.kanan_num = 0
+        self.kanan = (
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],str(self.kanan_num),PUPE_CYAN)
+            .set_coordinate((self.screen_ref.get_width()-111,70))
+        )
+        self.current_key = "Y"
+        self.guessing = (
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Guessing",PUPE_CYAN)
+            .set_coordinate((self.screen_ref.get_width()-200,440),origin_center=True)
+        )
+        self.guess =(
+            Text(resources.fonts["Kanit-Title"],"\""+self.current_key+"\"",PUPE_CYAN)
+            .set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
+        )
+    def render(self):
+        self.title_text.render(self.screen_ref)
+        self.menu_button.render(self.screen_ref)
+        self.score.render(self.screen_ref)
+        self.kanan.render(self.screen_ref)
+        self.guessing.render(self.screen_ref)
+        self.guess.render(self.screen_ref)
+    def update(self, event: Event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # Confirm now is go to GameOverPage
+            # MenuBotton is ConfirmButton
+            if self.menu_button.button_rect.collidepoint(pygame.mouse.get_pos()):
+                self.redirect_to("GameOver")
+        if event.type == pygame.KEYDOWN:
+            # Get input from keyboard
+            if event.unicode.isalpha():
+                self.current_key = event.unicode
+                self.guess.update_text("\""+self.current_key+"\"")
+                print(f"Current key: {self.current_key}")
+
+class GameOverPage(Page):
+    def __init__(self,screen:pygame.Surface,resources):
+        Page.__init__(self,screen,resources)
+        self.title_text = (
+            Text(resources.fonts["Kanit-Word"],"GAME OVER",PUPE_CYAN)
+            .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
+        )
+        self.menu_button = (
+            Button(300,80,PUPE_CYAN,4)
+            .add_text(resources.fonts["Kanit-Header"],"Back to Main Menu",BLACK)
+            .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
+        )
+        self.score = (
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",PUPE_CYAN)
+            .set_coordinate((50,self.screen_ref.get_height()-155))
+        )
         self.current_key = ""
     def render(self):
         self.title_text.render(self.screen_ref)
         self.menu_button.render(self.screen_ref)
         self.score.render(self.screen_ref)
+        self.screen_ref.blit(
+            self.resources.images["pupe-sad"],
+            (
+                self.screen_ref.get_rect().centerx - self.resources.images["pupe-sad"].get_rect().centerx,
+                100
+            ),
+        )
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
@@ -130,6 +187,7 @@ class Game():
             "MainMenu":MainMenuPage(self.screen,self.resources),
             "Topic":TopicPage(self.screen,self.resources),
             "HangMan":HangManPage(self.screen,self.resources),
+            "GameOver":GameOverPage(self.screen,self.resources),
             "winPage":winPage.winPage(self.screen,self.resources)
         }
 
@@ -147,6 +205,7 @@ class Game():
         resources.add_images({
             "ijudge-mascot": pygame.image.load("static/images/ijudge-mascot.jpg"),
             "pupe-sad": pygame.image.load("static/images/PupeSad.png"),
+            "pupe-happy": pygame.image.load("static/images/HappyPupe.png"),
             "klong":pygame.image.load("static/images/Klong.jpg")
         })
         return resources
