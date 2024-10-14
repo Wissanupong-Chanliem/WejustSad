@@ -51,5 +51,5 @@ class HangManPage(Page):
             # Get input from keyboard
             if event.unicode.isalpha():
                 self.current_key = event.unicode
-                self.guess.update_text("\""+self.current_key+"\"")
+                self.guess.update_text("\""+self.current_key+"\"").set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
                 print(f"Current key: {self.current_key}")

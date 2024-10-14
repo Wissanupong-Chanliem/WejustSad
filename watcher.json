@@ -1,0 +1,6 @@
+{
+    "watchlist":[
+        "src/**/*.py"
+    ],
+    "run":"python src/main.py"
+}
