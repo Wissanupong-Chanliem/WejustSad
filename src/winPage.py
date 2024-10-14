@@ -10,7 +10,7 @@ BLUE = (0, 0, 128)
 BLACK = (0,0,0)
 PUPE_CYAN = (73,179,255)
 
-class winPage(Page):
+class WinPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource):
         Page.__init__(self,screen,resources)
         self.back_to_main_menu = (

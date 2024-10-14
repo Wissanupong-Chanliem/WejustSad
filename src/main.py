@@ -6,12 +6,14 @@ from components.button import Button
 from components.topicpage.topic_select import TopicList
 from function.read_word_list import read_word_list
 from function.read_wordlist_folder import read_wordlist_dir
-import winPage
+from WinPage import WinPage
+
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 128)
 BLACK = (0,0,0)
 PUPE_CYAN = (73,179,255)
+
 class MainMenuPage(Page):
     def __init__(self,screen:pygame.Surface,resources):
         Page.__init__(self,screen,resources)
@@ -168,7 +170,7 @@ class GameOverPage(Page):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
             if self.menu_button.button_rect.collidepoint(pygame.mouse.get_pos()):
-                self.redirect_to("winPage")
+                self.redirect_to("WinPage")
         if event.type == pygame.KEYDOWN:
             # Get input from keyboard
             if event.unicode.isalpha():
@@ -188,7 +190,7 @@ class Game():
             "Topic":TopicPage(self.screen,self.resources),
             "HangMan":HangManPage(self.screen,self.resources),
             "GameOver":GameOverPage(self.screen,self.resources),
-            "winPage":winPage.winPage(self.screen,self.resources)
+            "WinPage":WinPage(self.screen,self.resources)
         }
 
     def load_resource(self) -> Resource:
