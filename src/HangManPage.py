@@ -4,40 +4,34 @@ from classes import Page,Resource
 from components.text import Text
 from components.button import Button
 
-WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 128)
-BLACK = (0,0,0)
-PUPE_CYAN = (73,179,255)
-
 class HangManPage(Page):
     def __init__(self,screen:pygame.Surface,resources):
         Page.__init__(self,screen,resources)
         self.title_text = (
-            Text(resources.fonts["Kanit-Word"],"Hang Man",PUPE_CYAN)
+            Text(resources.fonts["Kanit-Word"],"Hang Man",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
         )
         self.menu_button = (
-            Button(250,80,PUPE_CYAN,4)
-            .add_text(resources.fonts["Kanit-Header"],"Confirm",BLACK)
+            Button(250,80,self.resources.colors["pupe-cyan"],4)
+            .add_text(resources.fonts["Kanit-Header"],"Confirm",self.resources.colors["black"])
             .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
         )
         self.score = (
-            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",PUPE_CYAN)
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_width()-150,20))
         )
         self.kanan_num = 0
         self.kanan = (
-            Text(resources.fonts["Kanit-Bold-Regular-Size"],str(self.kanan_num),PUPE_CYAN)
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],str(self.kanan_num),self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_width()-111,70))
         )
         self.current_key = "Y"
         self.guessing = (
-            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Guessing",PUPE_CYAN)
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Guessing",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_width()-200,440),origin_center=True)
         )
         self.guess =(
-            Text(resources.fonts["Kanit-Title"],"\""+self.current_key+"\"",PUPE_CYAN)
+            Text(resources.fonts["Kanit-Title"],"\""+self.current_key+"\"",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
         )
     def render(self):

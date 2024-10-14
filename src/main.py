@@ -14,10 +14,6 @@ from HangManPage import HangManPage
 from GameOverPage import GameOverPage
 
 WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 128)
-BLACK = (0,0,0)
-PUPE_CYAN = (73,179,255)
 
 class Game():
     def __init__(self):
@@ -51,6 +47,11 @@ class Game():
             "pupe-happy": pygame.image.load("static/images/HappyPupe.png"),
             "klong":pygame.image.load("static/images/Klong.jpg")
         })
+        resources.colors = {
+            "white":(255,255,255),
+            "black":(0,0,0),
+            "pupe-cyan":(73,179,255)
+        }
         return resources
 
     def run(self):
@@ -68,7 +69,7 @@ class Game():
                     pygame.quit()
                     quit()
                 current_page.update(event)
-            self.screen.fill((255,255,255))
+            self.screen.fill(WHITE)
             current_page.render()
             pygame.display.update()
 

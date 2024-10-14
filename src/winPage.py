@@ -4,25 +4,19 @@ from classes import Page,Resource
 from components.text import Text
 from components.button import Button
 
-WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 128)
-BLACK = (0,0,0)
-PUPE_CYAN = (73,179,255)
-
 class WinPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource):
         Page.__init__(self,screen,resources)
         self.back_to_main_menu = (
-            Text(resources.fonts["Kanit-Regular"],"< Main Menu",BLACK)
+            Text(resources.fonts["Kanit-Regular"],"< Main Menu",self.resources.colors["black"])
             .set_coordinate((100,40))
         )
         self.winning_text = (
-            Text(resources.fonts["Kanit-Word"],"ชนะแล้วหรอฮะ?",PUPE_CYAN)
+            Text(resources.fonts["Kanit-Word"],"ชนะแล้วหรอฮะ?",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_rect().centerx,90),origin_center=True)
         )
         self.klong_text = (
-            Text(resources.fonts["Kanit-Klong"],"เป็นไปได้ยังไงกันฮะ!!",PUPE_CYAN)
+            Text(resources.fonts["Kanit-Klong"],"เป็นไปได้ยังไงกันฮะ!!",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_rect().centerx,self.screen_ref.get_height()-100),origin_center=True)
         )
 

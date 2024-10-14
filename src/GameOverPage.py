@@ -4,26 +4,20 @@ from classes import Page,Resource
 from components.text import Text
 from components.button import Button
 
-WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 128)
-BLACK = (0,0,0)
-PUPE_CYAN = (73,179,255)
-
 class GameOverPage(Page):
     def __init__(self,screen:pygame.Surface,resources):
         Page.__init__(self,screen,resources)
         self.title_text = (
-            Text(resources.fonts["Kanit-Word"],"GAME OVER",PUPE_CYAN)
+            Text(resources.fonts["Kanit-Word"],"GAME OVER",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
         )
         self.menu_button = (
-            Button(300,80,PUPE_CYAN,4)
-            .add_text(resources.fonts["Kanit-Header"],"Back to Main Menu",BLACK)
+            Button(300,80,self.resources.colors["pupe-cyan"],4)
+            .add_text(resources.fonts["Kanit-Header"],"Back to Main Menu",self.resources.colors["black"])
             .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
         )
         self.score = (
-            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",PUPE_CYAN)
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",self.resources.colors["pupe-cyan"])
             .set_coordinate((50,self.screen_ref.get_height()-155))
         )
         self.current_key = ""
