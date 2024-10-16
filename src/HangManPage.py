@@ -3,10 +3,11 @@ from pygame.event import Event
 from classes import Page,Resource
 from components.text import Text
 from components.button import Button
-
+from function import random_word
 class HangManPage(Page):
-    def __init__(self,screen:pygame.Surface,resources):
+    def __init__(self,screen:pygame.Surface,resources:Resource,word_list:dict[str,str]):
         Page.__init__(self,screen,resources)
+        self.word_list = random_word.random_word(word_list)
         self.title_text = (
             Text(resources.fonts["Kanit-Word"],"Hang Man",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
@@ -20,12 +21,13 @@ class HangManPage(Page):
             Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_width()-150,20))
         )
+        self.current_key = "Y"
         self.kanan_num = 0
         self.kanan = (
             Text(resources.fonts["Kanit-Bold-Regular-Size"],str(self.kanan_num),self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_width()-111,70))
         )
-        self.current_key = "Y"
+        
         self.guessing = (
             Text(resources.fonts["Kanit-Bold-Regular-Size"],"Guessing",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_width()-200,440),origin_center=True)
@@ -34,6 +36,8 @@ class HangManPage(Page):
             Text(resources.fonts["Kanit-Title"],"\""+self.current_key+"\"",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
         )
+        
+
     def render(self):
         self.title_text.render(self.screen_ref)
         self.menu_button.render(self.screen_ref)

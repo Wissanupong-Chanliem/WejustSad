@@ -11,4 +11,4 @@ def random_word(wordlist):
         word_key.remove(random_word)
     return random_wordlist
 
-random_word({"Cyan":"สีฟ้า","Klong":"เองฮะ"})
+print(random_word({"Cyan":"สีฟ้า","Klong":"เองฮะ"}))

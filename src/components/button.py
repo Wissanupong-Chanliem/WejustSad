@@ -12,15 +12,16 @@ class Button():
     ):
         self.button_rect = pygame.rect.Rect(0,0,width,height)
         self.color = color
-        self.text = None
+        self.text_image = None
         self.text_rect = None
         self.border_radius = border_radius
         self.is_border = is_border
+        self.text = ""
 
     def render(self,screen:pygame.Surface):
         pygame.draw.rect(screen,self.color,self.button_rect,self.is_border,border_radius=self.border_radius)
-        if self.text:
-            screen.blit(self.text,self.text_rect)
+        if self.text_image:
+            screen.blit(self.text_image,self.text_rect)
 
     def add_text(
         self,
@@ -29,8 +30,9 @@ class Button():
         color:tuple[int,int,int],
         center = True
     ):
-        self.text = font.render(text,True,color)
-        self.text_rect = self.text.get_rect()
+        self.text = text
+        self.text_image = font.render(text,True,color)
+        self.text_rect = self.text_image.get_rect()
         if center:
             self.text_rect.center = self.button_rect.center
         return self
@@ -40,6 +42,6 @@ class Button():
             self.button_rect.center = (coordinate[0],coordinate[1])
         else:
             self.button_rect.topleft = (coordinate[0],coordinate[1])
-        if self.text:
+        if self.text_image:
             self.text_rect.center = self.button_rect.center
         return self

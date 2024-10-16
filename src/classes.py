@@ -8,15 +8,22 @@ class Resource:
         self.fonts = font_list
     def add_images(self,images:dict[str,pygame.Surface]):
         self.images = images
+class Redirect:
+    def __init__(self,request="",data=None):
+        self.request = request
+        self.data = data
 class Page():
     def __init__(self,screen:pygame.Surface,resources:Resource):
         self.screen_ref = screen
         self.redirect = None
         self.resources = resources
+        self.data = None
     def render():
         pass
-    def redirect_to(self,new_page:str):
-        self.redirect = new_page
+    def redirect_to(self,to:str):
+        self.redirect = Redirect(to)
+    def redirect_with_data(self,to:str,data):
+        self.redirect = Redirect(to,data)
     def update(self, event:pygame.event.Event):
         pass
     def reset(self):

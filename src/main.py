@@ -22,13 +22,6 @@ class Game():
         self.screen = pygame.display.set_mode((1080, 720))
         self.screen.fill(WHITE)
         self.resources = self.load_resource()
-        self.pages:dict[str,Page] = {
-            "MainMenu":MainMenuPage(self.screen,self.resources),
-            "Topic":TopicPage(self.screen,self.resources),
-            "HangMan":HangManPage(self.screen,self.resources),
-            "GameOver":GameOverPage(self.screen,self.resources),
-            "WinPage":WinPage(self.screen,self.resources)
-        }
 
     def load_resource(self) -> Resource:
         resources = Resource()
@@ -55,13 +48,26 @@ class Game():
         return resources
 
     def run(self):
-        current_page:Page = self.pages["MainMenu"]
+        current_page:Page = MainMenuPage(self.screen,self.resources)
         running = True
         while running:
             if current_page.redirect:
-                to = current_page.redirect
-                current_page.reset()
-                current_page = self.pages[to]
+                to = current_page.redirect.request
+                data_attach = current_page.redirect.data
+                match to:
+                    case "MainMenu":
+                        current_page = MainMenuPage(self.screen,self.resources)
+                    case "Topic":
+                        current_page = TopicPage(self.screen,self.resources)
+                    case "HangMan":
+                        current_page = HangManPage(self.screen,self.resources,data_attach)
+                    case "GameOver":
+                        current_page = GameOverPage(self.screen,self.resources)
+                    case "WinPage":
+                        current_page = WinPage(self.screen,self.resources)
+                #current_page.reset()
+                #current_page = self.pages[to]
+                #current_page.data = data_attach
                 self.screen.fill(WHITE)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

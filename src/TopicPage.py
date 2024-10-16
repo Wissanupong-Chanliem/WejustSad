@@ -40,9 +40,15 @@ class TopicPage(Page):
         self.back_to_main_menu.render(self.screen_ref)
         
     def update(self, event: Event):
+        mouse_pos = pygame.mouse.get_pos()
+        self.topic_selection.update(event)
+        #print(event,self.topic_selection.get_selected())
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
-            if self.start_button.button_rect.collidepoint(pygame.mouse.get_pos()):
+            if self.start_button.button_rect.collidepoint(mouse_pos):
                 self.redirect_to("HangMan")
-            if self.back_to_main_menu.text_rect.collidepoint(pygame.mouse.get_pos()):
+            if self.back_to_main_menu.text_rect.collidepoint(mouse_pos):
                 self.redirect_to("MainMenu")
+        
+        if self.topic_selection.get_selected():
+            self.redirect_with_data("HangMan",read_word_list(f"static/wordlist/{self.topic_selection.get_selected()}.txt"))
