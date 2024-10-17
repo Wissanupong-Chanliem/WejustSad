@@ -46,9 +46,9 @@ class TopicPage(Page):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
             if self.start_button.button_rect.collidepoint(mouse_pos):
-                self.redirect_to("HangMan")
+                if self.topic_selection.get_selected():
+                    self.redirect_with_data("HangMan",read_word_list(f"static/wordlist/{self.topic_selection.get_selected()}.txt"))
             if self.back_to_main_menu.text_rect.collidepoint(mouse_pos):
                 self.redirect_to("MainMenu")
         
-        if self.topic_selection.get_selected():
-            self.redirect_with_data("HangMan",read_word_list(f"static/wordlist/{self.topic_selection.get_selected()}.txt"))
+        
