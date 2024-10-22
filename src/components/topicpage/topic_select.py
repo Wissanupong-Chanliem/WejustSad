@@ -23,7 +23,7 @@ class TopicList():
             )
         self.highest_offset = (len(self.topics_elements) - min(len(self.topics_elements),4)) * 90
         self.offset = 0
-        self.selected = ""
+        self.selected = -1
     def render(self,screen:pygame.Surface):
         self.border.fill((255,255,255))
         for i in range(len(self.topics)):
@@ -49,4 +49,6 @@ class TopicList():
                     self.selected = i
         
     def get_selected(self):
-        return self.topics_elements[self.selected].text
+        if self.selected != -1:
+            return self.topics_elements[self.selected].text
+        return ""

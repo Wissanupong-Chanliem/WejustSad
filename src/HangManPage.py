@@ -70,6 +70,7 @@ class HangManPage(Page):
                         self.word_status = "_"*len(self.word_list[self.kanan_num][0])
                         self.word.update_text(self.word_status).set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
                         self.kanan.update_text(str(self.kanan_num)).set_coordinate((self.screen_ref.get_width()-111,70))
+                        self.guess_wrong.update_text(str(self.wrong_count)).set_coordinate(self.screen_ref.get_rect().center,origin_center=True)
                 else:
                     self.wrong_count += 1
                     self.guess_wrong.update_text(str(self.wrong_count)).set_coordinate(self.screen_ref.get_rect().center,origin_center=True)
