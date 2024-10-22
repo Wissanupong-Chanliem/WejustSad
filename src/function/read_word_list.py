@@ -5,7 +5,7 @@ def read_word_list(path):
     for t in txt:
         t = t.replace("\n","")
         t = t.split("=")
-        wordlist[t[0]] = t[1]
+        wordlist[t[0].strip()] = t[1].strip()
     return wordlist
 
 read_word_list("static\\wordlist\\pupe-word.txt")

@@ -62,7 +62,7 @@ class Game():
                     case "HangMan":
                         current_page = HangManPage(self.screen,self.resources,data_attach)
                     case "GameOver":
-                        current_page = GameOverPage(self.screen,self.resources)
+                        current_page = GameOverPage(self.screen,self.resources,data_attach)
                     case "WinPage":
                         current_page = WinPage(self.screen,self.resources)
                 #current_page.reset()

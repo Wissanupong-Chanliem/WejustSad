@@ -8,6 +8,7 @@ class Text():
     ):
         self.text = font.render(text,True,color)
         self.text_rect = self.text.get_rect()
+        self.text_str = text
         self.font = font
         self.color = color
         
@@ -32,6 +33,7 @@ class Text():
             self.text = self.font.render(text,True,self.color)
             self.text_rect = self.text.get_rect()
             self.text_rect.topleft = old_pos
+        self.text_str = text
         return self
 
         

@@ -5,7 +5,7 @@ from components.text import Text
 from components.button import Button
 
 class GameOverPage(Page):
-    def __init__(self,screen:pygame.Surface,resources):
+    def __init__(self,screen:pygame.Surface,resources,score:int):
         Page.__init__(self,screen,resources)
         self.title_text = (
             Text(resources.fonts["Kanit-Word"],"GAME OVER",self.resources.colors["pupe-cyan"])
@@ -36,9 +36,4 @@ class GameOverPage(Page):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
             if self.menu_button.button_rect.collidepoint(pygame.mouse.get_pos()):
-                self.redirect_to("WinPage")
-        if event.type == pygame.KEYDOWN:
-            # Get input from keyboard
-            if event.unicode.isalpha():
-                self.current_key = event.unicode
-                print(f"Current key: {self.current_key}")
+                self.redirect_to("MainMenu")
