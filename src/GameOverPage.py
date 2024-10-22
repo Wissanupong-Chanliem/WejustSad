@@ -17,21 +17,22 @@ class GameOverPage(Page):
             .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
         )
         self.score = (
-            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",self.resources.colors["pupe-cyan"])
+            Text(resources.fonts["Kanit-Word"],f"Score : {score}",self.resources.colors["pupe-cyan"])
             .set_coordinate((50,self.screen_ref.get_height()-155))
         )
         self.current_key = ""
     def render(self):
+        self.screen_ref.blit(
+                    pygame.transform.scale_by(self.resources.images["pupe-sad-8"],0.35),
+                    (
+                        self.screen_ref.get_rect().centerx - pygame.transform.scale_by(self.resources.images["pupe-sad-8"],0.35).get_rect().centerx,
+                        100
+                    ),
+            )
         self.title_text.render(self.screen_ref)
         self.menu_button.render(self.screen_ref)
         self.score.render(self.screen_ref)
-        self.screen_ref.blit(
-            self.resources.images["pupe-sad"],
-            (
-                self.screen_ref.get_rect().centerx - self.resources.images["pupe-sad"].get_rect().centerx,
-                100
-            ),
-        )
+        
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked

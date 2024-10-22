@@ -38,7 +38,15 @@ class Game():
             "ijudge-mascot": pygame.image.load("static/images/ijudge-mascot.jpg"),
             "pupe-sad": pygame.image.load("static/images/PupeSad.png"),
             "pupe-happy": pygame.image.load("static/images/HappyPupe.png"),
-            "klong":pygame.image.load("static/images/Klong.jpg")
+            "klong":pygame.image.load("static/images/Klong.jpg"),
+            "pupe-sad-1":pygame.image.load("static/images/PupeSad-1.png"),
+            "pupe-sad-2":pygame.image.load("static/images/PupeSad-2.png"),
+            "pupe-sad-3":pygame.image.load("static/images/PupeSad-3.png"),
+            "pupe-sad-4":pygame.image.load("static/images/PupeSad-4.png"),
+            "pupe-sad-5":pygame.image.load("static/images/PupeSad-5.png"),
+            "pupe-sad-6":pygame.image.load("static/images/PupeSad-6.png"),
+            "pupe-sad-7":pygame.image.load("static/images/PupeSad-7.png"),
+            "pupe-sad-8":pygame.image.load("static/images/PupeSad-8.png"),
         })
         resources.colors = {
             "white":(255,255,255),
