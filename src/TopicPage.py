@@ -30,6 +30,13 @@ class TopicPage(Page):
             Text(resources.fonts["Kanit-Regular"],"< Main Menu",self.resources.colors["black"])
             .set_coordinate((100,40))
         )
+        self.word = (
+            Text(resources.fonts["Kanit-Regular"],"Word",self.resources.colors["black"])
+            .set_coordinate((530,85))
+        )
+        self.box_chack = (
+            
+        )
 
 
     def render(self):
@@ -38,7 +45,9 @@ class TopicPage(Page):
         self.topic_selection.render(self.screen_ref)
         self.add_wordlist_button.render(self.screen_ref)
         self.back_to_main_menu.render(self.screen_ref)
-        
+        self.word.render(self.screen_ref)
+        pygame.draw.rect(self.screen_ref,(73,179,255), pygame.Rect(520, 120, 480, 400), 2, 10)
+
     def update(self, event: Event):
         mouse_pos = pygame.mouse.get_pos()
         self.topic_selection.update(event)
