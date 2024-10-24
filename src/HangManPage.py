@@ -1,11 +1,11 @@
 import pygame
 from pygame.event import Event
+import pythainlp.util
 from classes import Page,Resource
 from components.text import Text
 from components.button import Button
 from function import random_word,check_answer
-import time
-
+import pythainlp
 SCALE = 0.35
 class HangManPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource,word_list:dict[str,str]):
@@ -91,7 +91,8 @@ class HangManPage(Page):
                 self.guess.update_text("\""+self.current_key+"\"").set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
         if event.type == pygame.KEYDOWN:
             # Get input from keyboard
-            if event.unicode.isalpha():
-                self.current_key = (event.unicode.upper())
+            current_key = pythainlp.util.thai_to_eng(event.unicode).upper()
+            if current_key.isalpha():
+                self.current_key = current_key
                 self.guess.update_text("\""+self.current_key+"\"").set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
                 print(f"Current key: {self.current_key}")
