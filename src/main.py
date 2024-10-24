@@ -28,6 +28,7 @@ class Game():
         resources.add_fonts({
             "Kanit-Title": pygame.font.Font("static/font/Kanit-SemiBold.ttf",48),
             "Kanit-Header": pygame.font.Font("static/font/Kanit-Regular.ttf",32),
+            "Kanit-Header-1": pygame.font.Font("static/font/Kanit-Regular.ttf",28),
             "Kanit-Regular": pygame.font.Font("static/font/Kanit-Regular.ttf",20),
             "Kanit-Header-2":pygame.font.Font("static/font/Kanit-Regular.ttf",40),
             "Kanit-Word":pygame.font.Font("static/font/Kanit-SemiBold.ttf",58),

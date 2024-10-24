@@ -31,7 +31,7 @@ class TopicList():
             self.topics_elements[i].render(self.border)
             if i == self.selected:
                 pygame.draw.rect(self.border,self.resources.colors["pupe-cyan"],(0,(i*90)-self.offset,250,80),5,5)
-        screen.blit(self.border,(100,150))
+        screen.blit(self.border,(100,180))
 
     def update(self,event:Event):
         if event.type == pygame.MOUSEWHEEL:

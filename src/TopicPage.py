@@ -16,14 +16,14 @@ class TopicPage(Page):
             .set_coordinate((100,60))
         )
         self.start_button = (
-            Button(200,80,self.resources.colors["pupe-cyan"],4)
-            .add_text(resources.fonts["Kanit-Header"],"Start!!!",self.resources.colors["black"])
-            .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
+            Button(580,40,self.resources.colors["pupe-cyan"],4)
+            .add_text(resources.fonts["Kanit-Regular"],"Start!!!",self.resources.colors["white"])
+            .set_coordinate((self.screen_ref.get_width()-390,620),origin_center=True)
         )
         self.topic_selection = TopicList(read_wordlist_dir(),resources)
         self.add_wordlist_button = (
-            Button(400,80,self.resources.colors["black"],4,1)
-            .set_coordinate((300,600),origin_center=True)
+            Button(250,40,self.resources.colors["black"],4,1)
+            .set_coordinate((100,600))
             .add_text(resources.fonts["Kanit-Regular"],"Add Word List",self.resources.colors["black"])
         )
         self.back_to_main_menu = (
@@ -32,12 +32,15 @@ class TopicPage(Page):
         )
         self.word = (
             Text(resources.fonts["Kanit-Regular"],"Word",self.resources.colors["black"])
-            .set_coordinate((530,85))
+            .set_coordinate((400,85))
         )
         self.box_chack = (
             
         )
-
+        self.selected_topic_text = (
+            Text(resources.fonts["Kanit-Header-1"],"Select Topic",self.resources.colors["black"])
+            .set_coordinate((100,120))
+        )
 
     def render(self):
         self.title_text.render(self.screen_ref)
@@ -46,7 +49,8 @@ class TopicPage(Page):
         self.add_wordlist_button.render(self.screen_ref)
         self.back_to_main_menu.render(self.screen_ref)
         self.word.render(self.screen_ref)
-        pygame.draw.rect(self.screen_ref,(73,179,255), pygame.Rect(520, 120, 480, 400), 2, 10)
+        self.selected_topic_text.render(self.screen_ref)
+        pygame.draw.rect(self.screen_ref,self.resources.colors["pupe-cyan"], pygame.Rect(400, 140, 580, 400), 2, 10)
 
     def update(self, event: Event):
         mouse_pos = pygame.mouse.get_pos()
