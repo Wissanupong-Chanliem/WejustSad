@@ -9,5 +9,3 @@ def random_word(wordlist):
         random_wordlist[random_word] = wordlist[random_word]
         word_key.remove(random_word)
     return random_wordlist
-
-random_word({"Cyan":"สีฟ้า","Klong":"เองฮะ"})
