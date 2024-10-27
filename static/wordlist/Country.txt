@@ -1,6 +1,5 @@
 United States = สหรัฐอเมริกา
 Canada = แคนาดา
-Brazil = บราซิล
 Mexico = เม็กซิโก
 Argentina = อาร์เจนตินา
 United Kingdom = สหราชอาณาจักร
@@ -44,7 +43,7 @@ Ireland = ไอร์แลนด์
 Austria = ออสเตรีย
 Hungary = ฮังการี
 Czech Republic = สาธารณรัฐเช็ก
-South Korea = เกาหลีใต้
+North Korea = เกาหลีเหนือ
 Pakistan = ปากีสถาน
 Bangladesh = บังกลาเทศ
 Greenland = กรีนแลนด์
