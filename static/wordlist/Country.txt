@@ -1,6 +1,5 @@
 United States = สหรัฐอเมริกา
 Canada = แคนาดา
-Brazil = บราซิล
 Mexico = เม็กซิโก
 Argentina = อาร์เจนตินา
 United Kingdom = สหราชอาณาจักร
@@ -18,7 +17,7 @@ Finland = ฟินแลนด์
 Russia = รัสเซีย
 China = จีน
 Japan = ญี่ปุ่น
-South Korea = เกาหลีใต้
+North Korea = เกาหลีเหนือ
 India = อินเดีย
 Australia = ออสเตรเลีย
 New Zealand = นิวซีแลนด์
