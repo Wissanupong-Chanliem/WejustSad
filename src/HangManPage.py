@@ -51,7 +51,7 @@ class HangManPage(Page):
                     pygame.transform.scale_by(self.resources.images[f"pupe-sad-{self.wrong_count}"],SCALE),
                     (
                         self.screen_ref.get_rect().centerx - pygame.transform.scale_by(self.resources.images[f"pupe-sad-{self.wrong_count}"],SCALE).get_rect().centerx,
-                        70
+                        90
                     ),
             )
         self.menu_button.render(self.screen_ref)
@@ -86,7 +86,8 @@ class HangManPage(Page):
                 else:
                     self.wrong_count += 1
                     if self.wrong_count >= 8:
-                        self.redirect_with_data("GameOver",self.kanan_num)
+                        data = {"score":self.kanan_num,"word":self.word_list[self.kanan_num]}
+                        self.redirect_with_data("GameOver",data)
                 self.current_key = ""
                 self.guess.update_text("\""+self.current_key+"\"").set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
         if event.type == pygame.KEYDOWN:
