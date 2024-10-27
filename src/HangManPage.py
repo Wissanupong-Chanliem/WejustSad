@@ -51,7 +51,7 @@ class HangManPage(Page):
                     pygame.transform.scale_by(self.resources.images[f"pupe-sad-{self.wrong_count}"],SCALE),
                     (
                         self.screen_ref.get_rect().centerx - pygame.transform.scale_by(self.resources.images[f"pupe-sad-{self.wrong_count}"],SCALE).get_rect().centerx,
-                        70
+                        90
                     ),
             )
         self.menu_button.render(self.screen_ref)
