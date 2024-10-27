@@ -9,5 +9,3 @@ def check_answer(ans:str,status:str,char:str):
             #break
     status = "".join(status)
     return status
-
-check_answer("Cyanc","__an_","c")

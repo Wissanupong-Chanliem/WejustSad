@@ -7,5 +7,3 @@ def read_word_list(path):
         t = t.split("=")
         wordlist[t[0].strip()] = t[1].strip()
     return wordlist
-
-read_word_list("static\\wordlist\\pupe-word.txt")
