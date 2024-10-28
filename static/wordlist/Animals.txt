@@ -45,6 +45,3 @@ Hummingbird = นกฮัมมิ่งเบิร์ด
 Goldfish = ปลาทอง
 Rhino = แรด
 Scorpion = แมงป่อง
-Capybara = คาปิบารา
-Hippopotamus = ฮิปโปโปเตมัส
-Sloth = สลอธ
