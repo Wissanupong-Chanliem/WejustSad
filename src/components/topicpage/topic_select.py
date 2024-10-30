@@ -43,7 +43,7 @@ class TopicList():
                     
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             clicked_pos = pygame.mouse.get_pos()
-            clicked_pos = (clicked_pos[0]-100,clicked_pos[1]-150)
+            clicked_pos = (clicked_pos[0]-100,clicked_pos[1]-180)
             for i,topic in enumerate(self.topics_elements):
                 if topic.button_rect.collidepoint(clicked_pos):
                     self.selected = i
