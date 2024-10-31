@@ -4,6 +4,7 @@ from classes import Page,Resource
 from components.text import Text
 from components.button import Button
 from components.topicpage.topic_select import TopicList
+from function import random_word
 from function.read_word_list import read_word_list
 from function.read_wordlist_folder import read_wordlist_dir
 
@@ -57,7 +58,9 @@ class Game():
         return resources
 
     def run(self):
-        current_page:Page = MainMenuPage(self.screen,self.resources)
+        word_list = list(random_word.random_word(read_word_list(f"static/wordlist/Animals.txt")).items())
+        data = {"wordlist":word_list,"word":word_list[0],"score":0}
+        current_page:Page = AnswerPage(self.screen,self.resources,data)
         running = True
         while running:
             if current_page.redirect:
