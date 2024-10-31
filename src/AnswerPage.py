@@ -3,9 +3,15 @@ from pygame.event import Event
 from classes import Page,Resource
 from components.text import Text
 from components.button import Button
+from typing import TypeAlias
 
-class GameOverPage(Page):
-    def __init__(self,screen:pygame.Surface,resources,data):
+data_in:TypeAlias = dict[
+    "score":int,
+    "word":str,
+    "current_wordlist":list[str]
+]
+class AnswerPage(Page):
+    def __init__(self,screen:pygame.Surface,resources:Resource,data:data_in):
         Page.__init__(self,screen,resources)
         self.title_text = (
             Text(resources.fonts["Kanit-Word"],"GAME OVER",self.resources.colors["pupe-cyan"])
@@ -31,12 +37,12 @@ class GameOverPage(Page):
         self.current_key = ""
     def render(self):
         self.screen_ref.blit(
-                    pygame.transform.scale_by(self.resources.images["pupe-sad-8"],0.3),
-                    (
+            pygame.transform.scale_by(self.resources.images["pupe-sad-8"],0.3),
+                (
                         self.screen_ref.get_rect().centerx - pygame.transform.scale_by(self.resources.images["pupe-sad-8"],0.3).get_rect().centerx,
-                        100
-                    ),
-            )
+                    100
+                ),
+        )
         self.title_text.render(self.screen_ref)
         self.menu_button.render(self.screen_ref)
         self.score.render(self.screen_ref)

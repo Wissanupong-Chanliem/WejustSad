@@ -6,13 +6,20 @@ from components.text import Text
 from components.button import Button
 from function import random_word,check_answer
 import pythainlp
+from typing import TypeAlias
+
+data_in:TypeAlias = dict[
+    "current_word":int,
+    "wordlist":list[(str,str)]
+]
+
 SCALE = 0.35
 class HangManPage(Page):
-    def __init__(self,screen:pygame.Surface,resources:Resource,word_list:dict[str,str]):
+    def __init__(self,screen:pygame.Surface,resources:Resource,data:data_in):
         Page.__init__(self,screen,resources)
-        self.word_list = list(random_word.random_word(word_list).items())
+        self.word_list = data["wordlist"]
         self.current_key = ""
-        self.kanan_num = 0
+        self.kanan_num = data["current_word"]
         self.wrong_count = 0
         self.guessed = []
         self.word_status = "_"*len(self.word_list[self.kanan_num][0])
@@ -79,10 +86,12 @@ class HangManPage(Page):
                         if self.kanan_num >= len(self.word_list):
                             self.redirect_to("WinPage")
                             return
-                        self.guessed = []
-                        self.word_status = "_"*len(self.word_list[self.kanan_num][0])
-                        self.word.update_text(self.word_status).set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
-                        self.kanan.update_text(str(self.kanan_num)).set_coordinate((self.screen_ref.get_width()-111,70))       
+                        data = {
+                            "score":self.kanan_num,
+                            "word":self.word_list[self.kanan_num-1],
+                            "current_wordlist":self.word_list
+                        }
+                        self.redirect_with_data("Answer",data)  
                 else:
                     self.wrong_count += 1
                     if self.wrong_count >= 8:

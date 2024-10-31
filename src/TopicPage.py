@@ -4,6 +4,7 @@ from classes import Page,Resource
 from components.text import Text
 from components.button import Button
 from components.topicpage.topic_select import TopicList
+from function import random_word
 from function.read_word_list import read_word_list
 from function.read_wordlist_folder import read_wordlist_dir
 
@@ -60,7 +61,9 @@ class TopicPage(Page):
             # Classic Mode button is clicked
             if self.start_button.button_rect.collidepoint(mouse_pos):
                 if self.topic_selection.get_selected():
-                    self.redirect_with_data("HangMan",read_word_list(f"static/wordlist/{self.topic_selection.get_selected()}.txt"))
+                    word_list = list(random_word.random_word(read_word_list(f"static/wordlist/{self.topic_selection.get_selected()}.txt")).items())
+                    data = {"wordlist":word_list,"current_word":0}
+                    self.redirect_with_data("HangMan",data)
             if self.back_to_main_menu.text_rect.collidepoint(mouse_pos):
                 self.redirect_to("MainMenu")
         

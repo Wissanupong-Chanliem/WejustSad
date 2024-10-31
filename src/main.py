@@ -12,7 +12,7 @@ from MainMenuPage import MainMenuPage
 from TopicPage import TopicPage
 from HangManPage import HangManPage
 from GameOverPage import GameOverPage
-
+from AnswerPage import AnswerPage
 WHITE = (255, 255, 255)
 
 class Game():
@@ -74,9 +74,8 @@ class Game():
                         current_page = GameOverPage(self.screen,self.resources,data_attach)
                     case "WinPage":
                         current_page = WinPage(self.screen,self.resources)
-                #current_page.reset()
-                #current_page = self.pages[to]
-                #current_page.data = data_attach
+                    case "Answer":
+                        current_page = AnswerPage(self.screen,self.resources,data_attach)
                 self.screen.fill(WHITE)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
