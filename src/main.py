@@ -13,6 +13,7 @@ from TopicPage import TopicPage
 from HangManPage import HangManPage
 from GameOverPage import GameOverPage
 from AnswerPage import AnswerPage
+from HardTopicPage import HardTopicPage
 WHITE = (255, 255, 255)
 
 class Game():
@@ -52,7 +53,8 @@ class Game():
         resources.colors = {
             "white":(255,255,255),
             "black":(0,0,0),
-            "pupe-cyan":(73,179,255)
+            "pupe-cyan":(73,179,255),
+            "pupe-violet":(133,113,255),
         }
         return resources
 
@@ -68,6 +70,8 @@ class Game():
                         current_page = MainMenuPage(self.screen,self.resources)
                     case "Topic":
                         current_page = TopicPage(self.screen,self.resources)
+                    case "HardTopic":
+                        current_page = HardTopicPage(self.screen,self.resources)
                     case "HangMan":
                         current_page = HangManPage(self.screen,self.resources,data_attach)
                     case "GameOver":

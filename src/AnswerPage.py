@@ -14,12 +14,12 @@ class AnswerPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource,data:data_in):
         Page.__init__(self,screen,resources)
         self.title_text = (
-            Text(resources.fonts["Kanit-Word"],"GAME OVER",self.resources.colors["pupe-cyan"])
+            Text(resources.fonts["Kanit-Word"],"ถูกต้องง!",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
         )
-        self.menu_button = (
+        self.next_button = (
             Button(300,80,self.resources.colors["pupe-cyan"],4)
-            .add_text(resources.fonts["Kanit-Header"],"Back to Main Menu",self.resources.colors["black"])
+            .add_text(resources.fonts["Kanit-Header"],"Next",self.resources.colors["black"])
             .set_coordinate((self.screen_ref.get_width()-200,640),origin_center=True)
         )
         self.score = (
@@ -34,17 +34,18 @@ class AnswerPage(Page):
             Text(resources.fonts["Kanit-Word"],f"{data["word"][1]}",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_rect().centerx,545),origin_center = True)
         )
+        self.data = data
         self.current_key = ""
     def render(self):
         self.screen_ref.blit(
-            pygame.transform.scale_by(self.resources.images["pupe-sad-8"],0.3),
+            pygame.transform.scale_by(self.resources.images["pupe-happy"],0.5),
                 (
-                        self.screen_ref.get_rect().centerx - pygame.transform.scale_by(self.resources.images["pupe-sad-8"],0.3).get_rect().centerx,
+                        self.screen_ref.get_rect().centerx - pygame.transform.scale_by(self.resources.images["pupe-happy"],0.5).get_rect().centerx,
                     100
                 ),
         )
         self.title_text.render(self.screen_ref)
-        self.menu_button.render(self.screen_ref)
+        self.next_button.render(self.screen_ref)
         self.score.render(self.screen_ref)
         self.word.render(self.screen_ref)
         self.meaning.render(self.screen_ref)
@@ -52,5 +53,9 @@ class AnswerPage(Page):
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             # Classic Mode button is clicked
-            if self.menu_button.button_rect.collidepoint(pygame.mouse.get_pos()):
-                self.redirect_to("MainMenu")
+            if self.next_button.button_rect.collidepoint(pygame.mouse.get_pos()):
+                if self.data["score"] >= len(self.data["current_wordlist"]):
+                    self.redirect_to("WinPage")
+                else:
+                    self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"]})
+                

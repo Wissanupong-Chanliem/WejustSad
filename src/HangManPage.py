@@ -83,9 +83,6 @@ class HangManPage(Page):
                     if current_status == self.word_list[self.kanan_num][0]:
                         self.wrong_count = 0
                         self.kanan_num += 1
-                        if self.kanan_num >= len(self.word_list):
-                            self.redirect_to("WinPage")
-                            return
                         data = {
                             "score":self.kanan_num,
                             "word":self.word_list[self.kanan_num-1],

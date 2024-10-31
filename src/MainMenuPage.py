@@ -39,3 +39,5 @@ class MainMenuPage(Page):
             # Classic Mode button is clicked
             if self.classic_button.button_rect.collidepoint(pygame.mouse.get_pos()):
                 self.redirect_to("Topic")
+            if self.hard_button.button_rect.collidepoint(pygame.mouse.get_pos()):
+                self.redirect_to("HardTopic")
