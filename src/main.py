@@ -59,7 +59,7 @@ class Game():
 
     def run(self):
         word_list = list(random_word.random_word(read_word_list(f"static/wordlist/Animals.txt")).items())
-        data = {"wordlist":word_list,"word":word_list[0],"score":0}
+        data = {"current_wordlist":word_list,"word":word_list[0],"score":0}
         current_page:Page = AnswerPage(self.screen,self.resources,data)
         running = True
         while running:
