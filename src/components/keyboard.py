@@ -14,7 +14,7 @@ def get_keyboard(layout_name: kl.LayoutName) -> klp.KeyboardLayout:
         margin=10,
         color=grey,
         txt_color=~grey,  # invert grey
-        txt_font=pygame.font.SysFont('', key_size//4),
+        txt_font=pygame.font.Font("static/font/Kanit-Regular.ttf", key_size//4),
         txt_padding=(key_size//6, key_size//10)
     )
     letter_key_size = (key_size, key_size)  # width, height

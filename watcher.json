@@ -2,5 +2,9 @@
     "watchlist":[
         "src/**/*.py"
     ],
-    "run":"python src/main.py"
+    "run":"python src/main.py",
+    "dependencies":[
+        "pythainlp",
+        "keyboardlayout"
+    ]
 }
