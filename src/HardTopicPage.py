@@ -8,9 +8,8 @@ from function import random_word
 from function.read_word_list import read_word_list
 from function.read_wordlist_folder import read_wordlist_dir
 
-
 class HardTopicPage(Page):
-    def __init__(self,screen:pygame.Surface,resources):
+    def __init__(self,screen:pygame.Surface,resources:Resource):
         Page.__init__(self,screen,resources)
         self.title_text = (
             Text(resources.fonts["Kanit-Header-2"],"Hard Mode",self.resources.colors["pupe-violet"])
@@ -56,9 +55,7 @@ class HardTopicPage(Page):
     def update(self, event: Event):
         mouse_pos = pygame.mouse.get_pos()
         self.topic_selection.update(event)
-        #print(event,self.topic_selection.get_selected())
         if event.type == pygame.MOUSEBUTTONDOWN:
-            # Classic Mode button is clicked
             if self.start_button.button_rect.collidepoint(mouse_pos):
                 if self.topic_selection.get_selected():
                     word_list = list(random_word.random_word(read_word_list(f"static/wordlist/{self.topic_selection.get_selected()}.txt")).items())

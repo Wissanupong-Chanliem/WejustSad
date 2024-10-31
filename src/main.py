@@ -1,12 +1,5 @@
 import pygame
-from pygame.event import Event
 from classes import Page,Resource
-from components.text import Text
-from components.button import Button
-from components.topicpage.topic_select import TopicList
-from function.read_word_list import read_word_list
-from function.read_wordlist_folder import read_wordlist_dir
-
 from WinPage import WinPage
 from MainMenuPage import MainMenuPage
 from TopicPage import TopicPage

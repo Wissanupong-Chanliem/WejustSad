@@ -5,7 +5,7 @@ from components.text import Text
 from components.button import Button
 
 class MainMenuPage(Page):
-    def __init__(self,screen:pygame.Surface,resources):
+    def __init__(self,screen:pygame.Surface,resources:Resource):
         Page.__init__(self,screen,resources)
         screen_rect = self.screen_ref.get_rect()
         self.classic_button = (
@@ -34,9 +34,8 @@ class MainMenuPage(Page):
         self.classic_button.render(self.screen_ref)
         self.hard_button.render(self.screen_ref)
     
-    def update(self, event):
+    def update(self, event:Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            # Classic Mode button is clicked
             if self.classic_button.button_rect.collidepoint(pygame.mouse.get_pos()):
                 self.redirect_to("Topic")
             if self.hard_button.button_rect.collidepoint(pygame.mouse.get_pos()):

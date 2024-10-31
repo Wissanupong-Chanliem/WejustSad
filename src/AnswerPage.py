@@ -8,7 +8,7 @@ from typing import TypeAlias
 data_in:TypeAlias = dict[
     "score":int,
     "word":str,
-    "current_wordlist":list[str]
+    "current_wordlist":list[(str,str)]
 ]
 class AnswerPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource,data:data_in):
@@ -34,13 +34,13 @@ class AnswerPage(Page):
             Text(resources.fonts["Kanit-Word"],f"{data["word"][1]}",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_rect().centerx,545),origin_center = True)
         )
+        self.happy_pic = pygame.transform.scale_by(self.resources.images["pupe-happy"],0.5)
         self.data = data
-        self.current_key = ""
     def render(self):
         self.screen_ref.blit(
-            pygame.transform.scale_by(self.resources.images["pupe-happy"],0.5),
+            self.happy_pic,
                 (
-                        self.screen_ref.get_rect().centerx - pygame.transform.scale_by(self.resources.images["pupe-happy"],0.5).get_rect().centerx,
+                        self.screen_ref.get_rect().centerx - self.happy_pic.get_rect().centerx,
                     100
                 ),
         )
@@ -52,7 +52,6 @@ class AnswerPage(Page):
         
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            # Classic Mode button is clicked
             if self.next_button.button_rect.collidepoint(pygame.mouse.get_pos()):
                 if self.data["score"] >= len(self.data["current_wordlist"]):
                     self.redirect_to("WinPage")
