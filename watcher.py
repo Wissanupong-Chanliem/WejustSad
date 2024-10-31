@@ -25,5 +25,4 @@ while True:
                 if not process.poll():
                     process.terminate()
                 process = subprocess.Popen(watcher_setting["run"].split())
-                
     watch_list = dict([pair for pair in watch_list.items() if pair[0] in seen])

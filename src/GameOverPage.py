@@ -3,9 +3,8 @@ from pygame.event import Event
 from classes import Page,Resource
 from components.text import Text
 from components.button import Button
-
 class GameOverPage(Page):
-    def __init__(self,screen:pygame.Surface,resources,data):
+    def __init__(self,screen:pygame.Surface,resources:Resource,data):
         Page.__init__(self,screen,resources)
         self.title_text = (
             Text(resources.fonts["Kanit-Word"],"GAME OVER",self.resources.colors["pupe-cyan"])
@@ -28,15 +27,16 @@ class GameOverPage(Page):
             Text(resources.fonts["Kanit-Word"],f"{data["word"][1]}",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_rect().centerx,545),origin_center = True)
         )
-        self.current_key = ""
+
     def render(self):
+        sad_pic = pygame.transform.scale_by(self.resources.images["pupe-sad-8"],0.3)
         self.screen_ref.blit(
-                    pygame.transform.scale_by(self.resources.images["pupe-sad-8"],0.3),
-                    (
-                        self.screen_ref.get_rect().centerx - pygame.transform.scale_by(self.resources.images["pupe-sad-8"],0.3).get_rect().centerx,
-                        100
-                    ),
-            )
+            sad_pic,
+            (
+                self.screen_ref.get_rect().centerx - sad_pic.get_rect().centerx,
+                100
+            ),
+        )
         self.title_text.render(self.screen_ref)
         self.menu_button.render(self.screen_ref)
         self.score.render(self.screen_ref)
@@ -45,6 +45,5 @@ class GameOverPage(Page):
         
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            # Classic Mode button is clicked
             if self.menu_button.button_rect.collidepoint(pygame.mouse.get_pos()):
                 self.redirect_to("MainMenu")

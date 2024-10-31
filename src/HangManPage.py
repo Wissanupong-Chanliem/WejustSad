@@ -4,7 +4,7 @@ import pythainlp.util
 from classes import Page,Resource
 from components.text import Text
 from components.button import Button
-from function import random_word,check_answer
+from function import check_answer
 import pythainlp
 from typing import TypeAlias
 
@@ -71,8 +71,6 @@ class HangManPage(Page):
         
     def update(self, event: Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            # Confirm now is go to GameOverPage
-            # MenuBotton is ConfirmButton
             if self.menu_button.button_rect.collidepoint(pygame.mouse.get_pos()):
                 if self.current_key in self.guessed:
                     return
@@ -97,9 +95,7 @@ class HangManPage(Page):
                 self.current_key = ""
                 self.guess.update_text("\""+self.current_key+"\"").set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
         if event.type == pygame.KEYDOWN:
-            # Get input from keyboard
             current_key = pythainlp.util.thai_to_eng(event.unicode).upper()
             if current_key.isalpha():
                 self.current_key = current_key
                 self.guess.update_text("\""+self.current_key+"\"").set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
-                print(f"Current key: {self.current_key}")
