@@ -22,6 +22,7 @@ class MainMenuPage(Page):
             Text(resources.fonts["Kanit-Title"],"{v}JustSad ;-;",resources.colors["pupe-cyan"])
             .set_coordinate((screen_rect.centerx,50),origin_center = True)
         )
+        self.arrow_right = pygame.draw.polygon(self.screen_ref, resources.colors["pupe-cyan"], ((750,80+150),(800,110+150),(750,140+150)))
     def render(self):
         self.title_text.render(self.screen_ref)
         self.screen_ref.blit(
@@ -31,6 +32,7 @@ class MainMenuPage(Page):
                 100
             ),
         )
+        self.arrow_right = pygame.draw.polygon(self.screen_ref, self.resources.colors["pupe-cyan"],  ((750,80+150),(800,110+150),(750,140+150)))
         self.classic_button.render(self.screen_ref)
         self.hard_button.render(self.screen_ref)
     
