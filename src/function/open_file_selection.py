@@ -7,7 +7,7 @@ def open_file_selection():
     if check_format(file):
         print("Error")
         return
-    shutil.copy2(file,"\\static\\wordlist" )
+    shutil.copy2(file,"static\\wordlist" )
 
 def check_format(file):
     txt = open(file,"r",encoding="utf-8")
@@ -18,3 +18,4 @@ def check_format(file):
             return 
     return 0
     
+open_file_selection()
