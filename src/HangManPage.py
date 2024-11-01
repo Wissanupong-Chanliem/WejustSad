@@ -23,7 +23,7 @@ class HangManPage(Page):
         self.kanan_num = data["current_word"]
         self.wrong_count = 0
         self.guessed = []
-        self.word_status = "_"*len(self.word_list[self.kanan_num][0])
+        self.word_status = check_answer.check_answer(self.word_list[self.kanan_num][0],"_"*len(self.word_list[self.kanan_num][0]),self.current_key)
         self.word = (
             Text(resources.fonts["Kanit-Word"],self.word_status,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
             .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
