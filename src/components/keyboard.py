@@ -26,7 +26,7 @@ def get_keyboard(resource:classes.Resource) -> klp.KeyboardLayout:
     )
     show_key = kl.KeyInfo(
         margin=5,
-        color=resource.colors["pupe-cyan"],
+        color=resource.assets[resource.members[resource.current_member]]["normal-color"],
         txt_color=(255,255,255),  # invert grey
         txt_font=pygame.font.Font("static/font/Kanit-Regular.ttf", key_size//3),
         txt_padding=(key_size//6, key_size//10)
@@ -37,6 +37,8 @@ def get_keyboard(resource:classes.Resource) -> klp.KeyboardLayout:
 
 def used_key(layout:klp.KeyboardLayout,pressed_key:str):
     key_size = 60
+    if not pressed_key:
+        return
     number = ord(pressed_key.lower())
     grey = pygame.Color('grey')
     disable_key = kl.KeyInfo(

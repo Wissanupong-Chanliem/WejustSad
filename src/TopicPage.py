@@ -13,11 +13,11 @@ class TopicPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource):
         Page.__init__(self,screen,resources)
         self.title_text = (
-            Text(resources.fonts["Kanit-Header-2"],"Classic Mode",self.resources.colors["pupe-cyan"])
+            Text(resources.fonts["Kanit-Header-2"],"Classic Mode",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
             .set_coordinate((100,60))
         )
         self.start_button = (
-            Button(580,40,self.resources.colors["pupe-cyan"],4)
+            Button(580,40,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"],4)
             .add_text(resources.fonts["Kanit-Regular"],"Start!!!",self.resources.colors["white"])
             .set_coordinate((self.screen_ref.get_width()-390,620),origin_center=True)
         )
@@ -51,7 +51,7 @@ class TopicPage(Page):
         self.back_to_main_menu.render(self.screen_ref)
         self.word.render(self.screen_ref)
         self.selected_topic_text.render(self.screen_ref)
-        pygame.draw.rect(self.screen_ref,self.resources.colors["pupe-cyan"], pygame.Rect(400, 140, 580, 400), 2, 10)
+        pygame.draw.rect(self.screen_ref,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"], pygame.Rect(400, 140, 580, 400), 2, 10)
 
     def update(self, event: Event):
         mouse_pos = pygame.mouse.get_pos()
