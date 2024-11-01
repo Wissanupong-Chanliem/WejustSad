@@ -31,11 +31,18 @@ class TopicList():
             self.topics_elements[i].render(self.border)
             if i == self.selected:
                 pygame.draw.rect(self.border,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"],(0,(i*90)-self.offset,250,80),5,5)
+        pygame.draw.rect(
+            self.border,
+            self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"],
+            (self.border.get_rect().right,(self.offset/len(self.topics_elements)*90)*self.border.get_rect().bottom,250,80),
+            5,
+            5
+        )
         screen.blit(self.border,(100,180))
 
     def update(self,event:Event):
         if event.type == pygame.MOUSEWHEEL:
-            self.offset += event.y*30
+            self.offset += -event.y*30
             if self.offset < 0 :
                 self.offset = 0
             if self.offset > self.highest_offset:
