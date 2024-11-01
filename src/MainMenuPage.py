@@ -23,15 +23,10 @@ class MainMenuPage(Page):
             .set_coordinate((screen_rect.centerx,50),origin_center = True)
         )
         self.arrow_right = pygame.draw.polygon(self.screen_ref, resources.colors["pupe-cyan"], ((750,80+150),(800,110+150),(750,140+150)))
+        self.sad_pic = pygame.transform.scale_by((self.resources.assets[self.resources.members[self.resources.current_member]]["normal-images"][8]),0.30)
     def render(self):
         self.title_text.render(self.screen_ref)
-        self.screen_ref.blit(
-            self.resources.images["pupe-sad"],
-            (
-                self.screen_ref.get_rect().centerx - self.resources.images["pupe-sad"].get_rect().centerx,
-                100
-            ),
-        )
+        self.screen_ref.blit(self.sad_pic,(self.screen_ref.get_rect().centerx-self.sad_pic.get_rect().centerx + 20,100))
         self.arrow_right = pygame.draw.polygon(self.screen_ref, self.resources.colors["pupe-cyan"],  ((750,80+150),(800,110+150),(750,140+150)))
         self.classic_button.render(self.screen_ref)
         self.hard_button.render(self.screen_ref)
@@ -42,3 +37,9 @@ class MainMenuPage(Page):
                 self.redirect_to("Topic")
             if self.hard_button.button_rect.collidepoint(pygame.mouse.get_pos()):
                 self.redirect_to("HardTopic")
+            if self.arrow_right.collidepoint(pygame.mouse.get_pos()):
+                self.resources.current_member+=1
+                if self.resources.current_member > 3:
+                    self.resources.current_member = 0
+                print(self.resources.current_member)
+                self.sad_pic = pygame.transform.scale_by((self.resources.assets[self.resources.members[self.resources.current_member]]["normal-images"][8]),0.30)
