@@ -37,6 +37,8 @@ def get_keyboard(resource:classes.Resource) -> klp.KeyboardLayout:
 
 def used_key(layout:klp.KeyboardLayout,pressed_key:str):
     key_size = 60
+    if not pressed_key:
+        return
     number = ord(pressed_key.lower())
     grey = pygame.Color('grey')
     disable_key = kl.KeyInfo(
