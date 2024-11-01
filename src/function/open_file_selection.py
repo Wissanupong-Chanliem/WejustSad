@@ -17,5 +17,3 @@ def check_format(file):
         if t.count(" = ")>1:
             return 
     return 0
-    
-open_file_selection()
