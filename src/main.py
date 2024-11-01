@@ -42,6 +42,8 @@ class Game():
             "pupe-sad-6":pygame.image.load("static/images/PupeSad-6.png"),
             "pupe-sad-7":pygame.image.load("static/images/PupeSad-7.png"),
             "pupe-sad-8":pygame.image.load("static/images/PupeSad-8.png"),
+            "unchack":pygame.image.load("static/images/unchack.png"),
+            "chack":pygame.image.load("static/images/chack.png")
         })
         resources.colors = {
             "white":(255,255,255),
