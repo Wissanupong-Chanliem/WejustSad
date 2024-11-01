@@ -65,6 +65,8 @@ class Game():
                }
             },
             "arse":{
+                "normal-color":(132,214,255),
+                "hard-color":(8,0,96),
                 "normal-images":{
                     1 : pygame.image.load("static/images/ArseSad-1.png"),
                     2 : pygame.image.load("static/images/ArseSad-2.png"),
@@ -78,6 +80,8 @@ class Game():
                }
             },
             "akita":{
+                "normal-color":(255,85,0),
+                "hard-color":(255,32,43),
                 "normal-images":{
                     1 : pygame.image.load("static/images/AkitaSad-1.png"),
                     2 : pygame.image.load("static/images/AkitaSad-2.png"),
@@ -90,6 +94,8 @@ class Game():
                 }
             },
             "penguin":{
+                "normal-color":(204,183,229),
+                "hard-color":(53,193,254),
                 "normal-images":{
                     1 : pygame.image.load("static/images/PenguinSad-1.png"),
                     2 : pygame.image.load("static/images/PenguinSad-2.png"),

@@ -22,12 +22,14 @@ class MainMenuPage(Page):
             Text(resources.fonts["Kanit-Title"],"{v}JustSad ;-;",resources.colors["pupe-cyan"])
             .set_coordinate((screen_rect.centerx,50),origin_center = True)
         )
-        self.arrow_right = pygame.draw.polygon(self.screen_ref, resources.colors["pupe-cyan"], ((750,80+150),(800,110+150),(750,140+150)))
+        self.arrow_left = pygame.draw.polygon(self.screen_ref, resources.colors["pupe-cyan"], ((350,230),(300,260),(350,290)))
+        self.arrow_right = pygame.draw.polygon(self.screen_ref, resources.colors["pupe-cyan"], ((750,230),(800,260),(750,290)))
         self.sad_pic = pygame.transform.scale_by((self.resources.assets[self.resources.members[self.resources.current_member]]["normal-images"][8]),0.30)
     def render(self):
         self.title_text.render(self.screen_ref)
         self.screen_ref.blit(self.sad_pic,(self.screen_ref.get_rect().centerx-self.sad_pic.get_rect().centerx + 20,100))
-        self.arrow_right = pygame.draw.polygon(self.screen_ref, self.resources.colors["pupe-cyan"],  ((750,80+150),(800,110+150),(750,140+150)))
+        self.arrow_left = pygame.draw.polygon(self.screen_ref, self.resources.colors["pupe-cyan"], ((350,230),(300,260),(350,290)))
+        self.arrow_right = pygame.draw.polygon(self.screen_ref, self.resources.colors["pupe-cyan"],  ((750,230),(800,260),(750,290)))
         self.classic_button.render(self.screen_ref)
         self.hard_button.render(self.screen_ref)
     
@@ -41,5 +43,6 @@ class MainMenuPage(Page):
                 self.resources.current_member+=1
                 if self.resources.current_member > 3:
                     self.resources.current_member = 0
-                print(self.resources.current_member)
+                #print(self.resources.current_member)
                 self.sad_pic = pygame.transform.scale_by((self.resources.assets[self.resources.members[self.resources.current_member]]["normal-images"][8]),0.30)
+                
