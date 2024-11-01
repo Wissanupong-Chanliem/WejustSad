@@ -23,30 +23,30 @@ class HangManPage(Page):
         self.kanan_num = data["current_word"]
         self.wrong_count = 0
         self.guessed = []
-        self.word_status = "_"*len(self.word_list[self.kanan_num][0])
+        self.word_status = check_answer.check_answer(self.word_list[self.kanan_num][0],"_"*len(self.word_list[self.kanan_num][0]),self.current_key)
         self.word = (
-            Text(resources.fonts["Kanit-Word"],self.word_status,self.resources.colors["pupe-cyan"])
+            Text(resources.fonts["Kanit-Word"],self.word_status,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
             .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
         )
         self.menu_button = (
-            Button(250,80,self.resources.colors["pupe-cyan"],4)
-            .add_text(resources.fonts["Kanit-Header"],"Confirm",self.resources.colors["black"])
+            Button(250,80,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"],4)
+            .add_text(resources.fonts["Kanit-Header"],"Confirm",self.resources.colors["white"])
             .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
         )
         self.score = (
-            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",self.resources.colors["pupe-cyan"])
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
             .set_coordinate((self.screen_ref.get_width()-150,20))
         )
         self.kanan = (
-            Text(resources.fonts["Kanit-Bold-Regular-Size"],str(self.kanan_num),self.resources.colors["pupe-cyan"])
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],str(self.kanan_num),self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
             .set_coordinate((self.screen_ref.get_width()-111,70))
         )
         self.guessing = (
-            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Guessing",self.resources.colors["pupe-cyan"])
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Guessing",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
             .set_coordinate((self.screen_ref.get_width()-200,440),origin_center=True)
         )
         self.guess =(
-            Text(resources.fonts["Kanit-Title"],"\""+self.current_key+"\"",self.resources.colors["pupe-cyan"])
+            Text(resources.fonts["Kanit-Title"],"\""+self.current_key+"\"",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
             .set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
         )
         self.keyboard = get_keyboard(self.resources)
