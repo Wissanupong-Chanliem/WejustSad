@@ -4,6 +4,9 @@ class Resource:
         self.fonts = {}
         self.images = {}
         self.colors = {}
+        self.assets = {}
+        self.members = []
+        self.current_member = 0
     def add_fonts(self,font_list:dict[str,pygame.font.Font]):
         self.fonts = font_list
     def add_images(self,images:dict[str,pygame.Surface]):

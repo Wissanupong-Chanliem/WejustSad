@@ -49,6 +49,66 @@ class Game():
             "pupe-cyan":(73,179,255),
             "pupe-violet":(133,113,255),
         }
+        resources.assets = {
+            "pupe":{
+               "normal-color":(73,179,255),
+               "hard-color":(133,113,255),
+               "normal-images":{
+                   1 : pygame.image.load("static/images/PupeSad-1.png"),
+                    2 : pygame.image.load("static/images/PupeSad-2.png"),
+                    3 : pygame.image.load("static/images/PupeSad-3.png"),
+                    4 : pygame.image.load("static/images/PupeSad-4.png"),
+                    5 : pygame.image.load("static/images/PupeSad-5.png"),
+                    6 : pygame.image.load("static/images/PupeSad-6.png"),
+                    7 : pygame.image.load("static/images/PupeSad-7.png"),
+                    8 : pygame.image.load("static/images/PupeSad-8.png"),
+               }
+            },
+            "arse":{
+                "normal-color":(132,214,255),
+                "hard-color":(8,0,96),
+                "normal-images":{
+                    1 : pygame.image.load("static/images/ArseSad-1.png"),
+                    2 : pygame.image.load("static/images/ArseSad-2.png"),
+                    3 : pygame.image.load("static/images/ArseSad-3.png"),
+                    4 : pygame.image.load("static/images/ArseSad-4.png"),
+                    5 : pygame.image.load("static/images/ArseSad-5.png"),
+                    6 : pygame.image.load("static/images/ArseSad-6.png"),
+                    7 : pygame.image.load("static/images/ArseSad-7.png"),
+                    8 : pygame.image.load("static/images/ArseSad-8.png"),
+
+               }
+            },
+            "akita":{
+                "normal-color":(255,85,0),
+                "hard-color":(255,32,43),
+                "normal-images":{
+                    1 : pygame.image.load("static/images/AkitaSad-1.png"),
+                    2 : pygame.image.load("static/images/AkitaSad-2.png"),
+                    3 : pygame.image.load("static/images/AkitaSad-3.png"),
+                    4 : pygame.image.load("static/images/AkitaSad-4.png"),
+                    5 : pygame.image.load("static/images/AkitaSad-5.png"),
+                    6 : pygame.image.load("static/images/AkitaSad-6.png"),
+                    7 : pygame.image.load("static/images/AkitaSad-7.png"),
+                    8 : pygame.image.load("static/images/AkitaSad-8.png"),
+                }
+            },
+            "penguin":{
+                "normal-color":(204,183,229),
+                "hard-color":(53,193,254),
+                "normal-images":{
+                    1 : pygame.image.load("static/images/PenguinSad-1.png"),
+                    2 : pygame.image.load("static/images/PenguinSad-2.png"),
+                    3 : pygame.image.load("static/images/PenguinSad-3.png"),
+                    4 : pygame.image.load("static/images/PenguinSad-4.png"),
+                    5 : pygame.image.load("static/images/PenguinSad-5.png"),
+                    6 : pygame.image.load("static/images/PenguinSad-6.png"),
+                    7 : pygame.image.load("static/images/PenguinSad-7.png"),
+                    8 : pygame.image.load("static/images/PenguinSad-8.png"),
+                }
+            }
+        }
+        resources.members = ["pupe","arse","akita","penguin"]
         return resources
 
     def run(self):

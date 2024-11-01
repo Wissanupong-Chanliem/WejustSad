@@ -6,6 +6,7 @@ from components.text import Text
 from components.button import Button
 from function import check_answer
 import pythainlp
+from components.keyboard import get_keyboard,used_key
 from typing import TypeAlias
 
 data_in:TypeAlias = dict[
@@ -48,7 +49,7 @@ class HangManPage(Page):
             Text(resources.fonts["Kanit-Title"],"\""+self.current_key+"\"",self.resources.colors["pupe-cyan"])
             .set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
         )
-
+        self.keyboard = get_keyboard(self.resources)
     def render(self):
         match self.wrong_count:
             case 0:
@@ -61,6 +62,7 @@ class HangManPage(Page):
                         90
                     ),
             )
+        self.keyboard.draw(self.screen_ref)
         self.menu_button.render(self.screen_ref)
         self.score.render(self.screen_ref)
         self.kanan.render(self.screen_ref)
@@ -75,6 +77,7 @@ class HangManPage(Page):
                 if self.current_key in self.guessed:
                     return
                 self.guessed.append(self.current_key)
+                used_key(self.keyboard,self.current_key)
                 if self.current_key.lower() in self.word_list[self.kanan_num][0].lower():
                     current_status = check_answer.check_answer(self.word_list[self.kanan_num][0],self.word.text_str,self.current_key)
                     self.word.update_text(current_status).set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)

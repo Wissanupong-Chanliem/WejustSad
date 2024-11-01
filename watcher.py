@@ -11,9 +11,8 @@ def install_dependencies(dependencies_list:list[str]):
         lines = dependencies_file.readlines()
         lines = [l.replace("\n","") for l in lines ]
     need = [l for l in dependencies_list if l not in lines]
-    print(need)
     if need:
-        os.system(f"pip install {" ".join(need)}")
+        os.system(f"pip install -q {" ".join(need)}")
     with open('dependencies.txt', 'w') as dependencies_file:
         dependencies_file.write("\n".join(dependencies_list))
 def watch():
