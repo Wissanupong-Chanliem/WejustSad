@@ -106,9 +106,23 @@ class Game():
                     7 : pygame.image.load("static/images/PenguinSad-7.png"),
                     8 : pygame.image.load("static/images/PenguinSad-8.png"),
                 }
+            },
+            "gnome":{
+                "normal-color":(118,205,38),
+                "hard-color":(255,222,33),
+                "normal-images":{
+                    1 : pygame.image.load("static/images/GnomeSad-1.png"),
+                    2 : pygame.image.load("static/images/GnomeSad-2.png"),
+                    3 : pygame.image.load("static/images/GnomeSad-3.png"),
+                    4 : pygame.image.load("static/images/GnomeSad-4.png"),
+                    5 : pygame.image.load("static/images/GnomeSad-5.png"),
+                    6 : pygame.image.load("static/images/GnomeSad-6.png"),
+                    7 : pygame.image.load("static/images/GnomeSad-7.png"),
+                    8 : pygame.image.load("static/images/GnomeSad-8.png"),
+                }
             }
         }
-        resources.members = ["pupe","arse","akita","penguin"]
+        resources.members = ["pupe","arse","akita","penguin","gnome"]
         return resources
 
     def run(self):
