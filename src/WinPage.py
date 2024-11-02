@@ -23,7 +23,7 @@ class WinPage(Page):
             Text(resources.fonts["Kanit-Klong"],"เป็นไปได้ยังไงกันฮะ!!",self.resources.get_current_color(data["is_hard"]))
             .set_coordinate((self.screen_ref.get_rect().centerx,self.screen_ref.get_height()-100),origin_center=True)
         )
-        self.klong_pic = pygame.transform.scale_by(pygame.image.load("static/images/Klong.jpg"),0.47)
+        self.klong_pic = pygame.transform.scale_by(pygame.image.load("static/images/Klong.webp"),0.47)
     def render(self):
         self.back_to_main_menu.render(self.screen_ref)
         self.winning_text.render(self.screen_ref)

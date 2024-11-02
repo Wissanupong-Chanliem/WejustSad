@@ -15,6 +15,7 @@ def install_dependencies(dependencies_list:list[str]):
         os.system(f"pip install -q {" ".join(need)}")
     with open('dependencies.txt', 'w') as dependencies_file:
         dependencies_file.write("\n".join(dependencies_list))
+
 def watch():
     with open('watcher.json', 'r') as file:
         watcher_setting = json.load(file)

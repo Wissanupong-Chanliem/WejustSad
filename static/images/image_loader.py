@@ -1,17 +1,8 @@
-import pygame
-pygame.init()
+"""File Converter for Development"""
+import subprocess
 
-screen = pygame.display.set_mode([500, 500])
-
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    screen.fill((255, 255, 255))
-    
-
-    pygame.display.flip()
-
-pygame.quit()
+import glob
+def convert():
+    for image in glob.glob("static\\images\\*.*",recursive=True):
+        subprocess.Popen(["./cimg",f"{image}",f"{image.replace(".png",".webp")}"])
+convert()
