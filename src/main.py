@@ -97,7 +97,7 @@ class Game():
             },
             "penguin":{
                 "normal-color":(204,183,229),
-                "hard-color":(53,193,254),
+                "hard-color":(240,183,231),
                 "normal-images":{
                     1 : pygame.image.load("static/images/PenguinSad-1.png"),
                     2 : pygame.image.load("static/images/PenguinSad-2.png"),
