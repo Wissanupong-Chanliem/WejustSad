@@ -24,7 +24,7 @@ class MainMenuPage(Page):
         )
         self.arrow_left = pygame.draw.polygon(self.screen_ref, resources.get_current_assets()["normal-color"], ((350,230),(300,260),(350,290)))
         self.arrow_right = pygame.draw.polygon(self.screen_ref, resources.get_current_assets()["normal-color"], ((750,230),(800,260),(750,290)))
-        self.sad_pic = pygame.transform.scale_by((self.resources.get_current_assets()["normal-images"][8]),0.30)
+        self.sad_pic = pygame.transform.scale_by((list(self.resources.get_current_assets()["normal-images"].values())[-1]),0.30)
     def render(self):
         self.title_text.render(self.screen_ref)
         self.screen_ref.blit(self.sad_pic,(self.screen_ref.get_rect().centerx-self.sad_pic.get_rect().centerx + 20,100))
@@ -36,9 +36,10 @@ class MainMenuPage(Page):
     def update(self, event:Event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.classic_button.button_rect.collidepoint(pygame.mouse.get_pos()):
-                self.redirect_to("Topic")
+                self.redirect_with_data("Topic",{"is_hard":False})
             if self.hard_button.button_rect.collidepoint(pygame.mouse.get_pos()):
-                self.redirect_to("HardTopic")
+                #self.redirect_to("HardTopic")
+                self.redirect_with_data("Topic",{"is_hard":True})
             if self.arrow_right.collidepoint(pygame.mouse.get_pos()):
                 self.resources.current_member+=1
                 if self.resources.current_member > len(self.resources.members)-1:
@@ -48,7 +49,7 @@ class MainMenuPage(Page):
                 self.resources.current_member-=1
                 if self.resources.current_member < 0:
                     self.resources.current_member = len(self.resources.members)-1
-                print(self.resources.current_member)
+                #print(self.resources.current_member)
                 self.__init__(self.screen_ref,self.resources)
                 #self.sad_pic = pygame.transform.scale_by((self.resources.get_current_assets()["normal-images"][8]),0.30)
                 

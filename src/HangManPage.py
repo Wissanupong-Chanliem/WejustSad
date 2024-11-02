@@ -11,13 +11,14 @@ from typing import TypeAlias
 
 data_in:TypeAlias = dict[
     "current_word":int,
-    "wordlist":list[(str,str)]
+    "wordlist":list[(str,str)],
+    "is_hard":bool
 ]
-
-SCALE = 0.35
+SCALE = 0.28
 class HangManPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource,data:data_in):
         Page.__init__(self,screen,resources)
+        self.is_hard = data["is_hard"]
         self.word_list = data["wordlist"]
         self.current_key = ""
         self.kanan_num = data["current_word"]
@@ -25,40 +26,41 @@ class HangManPage(Page):
         self.guessed = []
         self.word_status = check_answer.check_answer(self.word_list[self.kanan_num][0],"_"*len(self.word_list[self.kanan_num][0]),self.current_key)
         self.word = (
-            Text(resources.fonts["Kanit-Word"],self.word_status,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Word"],self.word_status,self.resources.get_current_color(self.is_hard))
             .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
         )
         self.menu_button = (
-            Button(250,80,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"],4)
+            Button(250,80,self.resources.get_current_color(self.is_hard),4)
             .add_text(resources.fonts["Kanit-Header"],"Confirm",self.resources.colors["white"])
             .set_coordinate((self.screen_ref.get_width()-200,600),origin_center=True)
         )
         self.score = (
-            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Score",self.resources.get_current_color(self.is_hard))
             .set_coordinate((self.screen_ref.get_width()-150,20))
         )
         self.kanan = (
-            Text(resources.fonts["Kanit-Bold-Regular-Size"],str(self.kanan_num),self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],str(self.kanan_num),self.resources.get_current_color(self.is_hard))
             .set_coordinate((self.screen_ref.get_width()-111,70))
         )
         self.guessing = (
-            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Guessing",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Bold-Regular-Size"],"Guessing",self.resources.get_current_color(self.is_hard))
             .set_coordinate((self.screen_ref.get_width()-200,440),origin_center=True)
         )
         self.guess =(
-            Text(resources.fonts["Kanit-Title"],"\""+self.current_key+"\"",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Title"],"\""+self.current_key+"\"",self.resources.get_current_color(self.is_hard))
             .set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
         )
-        self.keyboard = get_keyboard(self.resources)
+        self.keyboard = get_keyboard(self.resources,self.is_hard)
+        self.image = pygame.transform.scale_by(self.resources.get_current_sprite(self.is_hard)[self.wrong_count],SCALE)
     def render(self):
         match self.wrong_count:
             case 0:
                 pass
             case _:
                 self.screen_ref.blit(
-                    pygame.transform.scale_by(self.resources.get_current_assets()["normal-images"][self.wrong_count],SCALE),
+                    self.image,
                     (
-                        self.screen_ref.get_rect().centerx - pygame.transform.scale_by(self.resources.images[f"pupe-sad-{self.wrong_count}"],SCALE).get_rect().centerx,
+                        self.screen_ref.get_rect().centerx - self.image.get_rect().centerx,
                         90
                     ),
             )
@@ -87,13 +89,19 @@ class HangManPage(Page):
                         data = {
                             "score":self.kanan_num,
                             "word":self.word_list[self.kanan_num-1],
-                            "current_wordlist":self.word_list
+                            "current_wordlist":self.word_list,
+                            "is_hard":self.is_hard
                         }
                         self.redirect_with_data("Answer",data)  
                 else:
                     self.wrong_count += 1
-                    if self.wrong_count >= 8:
-                        data = {"score":self.kanan_num,"word":self.word_list[self.kanan_num]}
+                    self.image = pygame.transform.scale_by(self.resources.get_current_sprite(self.is_hard)[self.wrong_count],SCALE)
+                    if self.wrong_count >= len(self.resources.get_current_sprite(self.is_hard)) - 1:
+                        data = {
+                            "score":self.kanan_num,
+                            "word":self.word_list[self.kanan_num],
+                            "is_hard":self.is_hard
+                        }
                         self.redirect_with_data("GameOver",data)
                 self.current_key = ""
                 self.guess.update_text("\""+self.current_key+"\"").set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)

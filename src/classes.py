@@ -2,7 +2,6 @@ import pygame
 class Resource:
     def __init__(self):
         self.fonts = {}
-        self.images = {}
         self.colors = {}
         self.assets = {}
         self.members = []
@@ -13,6 +12,14 @@ class Resource:
         self.images = images
     def get_current_assets(self):
         return self.assets[self.members[self.current_member]]
+    def get_current_sprite(self,is_hard:bool):
+        if is_hard:
+            return self.assets[self.members[self.current_member]]["hard-images"]
+        return self.assets[self.members[self.current_member]]["normal-images"]
+    def get_current_color(self,is_hard:bool):
+        if is_hard:
+            return self.assets[self.members[self.current_member]]["hard-color"]
+        return self.assets[self.members[self.current_member]]["normal-color"]
 class Redirect:
     def __init__(self,request="",data=None):
         self.request = request
@@ -23,7 +30,7 @@ class Page():
         self.redirect = None
         self.resources = resources
         self.data = None
-    def render():
+    def render(self):
         pass
     def redirect_to(self,to:str):
         self.redirect = Redirect(to)
