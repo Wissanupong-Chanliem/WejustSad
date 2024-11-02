@@ -85,5 +85,6 @@ class TopicPage(Page):
                 self.redirect_to("MainMenu")
             if self.add_wordlist_button.button_rect.collidepoint(mouse_pos):
                 open_file_selection()
+                self.topic_selection.update_list(read_wordlist_dir())
         
         

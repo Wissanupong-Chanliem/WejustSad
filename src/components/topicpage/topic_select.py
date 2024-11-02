@@ -58,3 +58,11 @@ class TopicList():
         if self.selected != -1:
             return self.topics_elements[self.selected].text
         return ""
+    def update_list(self,topics:dict[str,str]):
+        self.topics_elements.clear()
+        for i,topic in enumerate(topics.items()):
+            self.topics_elements.append(
+                Button(250,80,(0,0,0),5,1)
+                .add_text(self.resources.fonts["Kanit-Regular"],topic[0],(0,0,0))
+                .set_coordinate((0,(i*90)))
+            )
