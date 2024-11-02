@@ -9,7 +9,8 @@ data_in:TypeAlias = dict[
     "score":int,
     "word":str,
     "current_wordlist":list[(str,str)],
-    "is_hard":bool
+    "is_hard":bool,
+    "current_sad":int
 ]
 class AnswerPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource,data:data_in):
@@ -60,5 +61,8 @@ class AnswerPage(Page):
                 if self.data["score"] >= len(self.data["current_wordlist"]):
                     self.redirect_with_data("WinPage",{"is_hard":self.data["is_hard"]})
                 else:
-                    self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.is_hard})
+                    if self.data["is_hard"]:
+                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":self.data["current_sad"]})
+                    else:
+                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":0})
                 
