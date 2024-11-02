@@ -7,29 +7,29 @@ class GameOverPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource,data):
         Page.__init__(self,screen,resources)
         self.title_text = (
-            Text(resources.fonts["Kanit-Word"],"GAME OVER",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Word"],"GAME OVER",self.resources.get_current_assets()["normal-color"])
             .set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
         )
         self.menu_button = (
-            Button(300,80,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"],4)
+            Button(300,80,self.resources.get_current_assets()["normal-color"],4)
             .add_text(resources.fonts["Kanit-Header"],"Back to Main Menu",self.resources.colors["white"])
             .set_coordinate((self.screen_ref.get_width()-200,640),origin_center=True)
         )
         self.score = (
-            Text(resources.fonts["Kanit-Word"],f"Score : {data["score"]}",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Word"],f"Score : {data["score"]}",self.resources.get_current_assets()["normal-color"])
             .set_coordinate((50,self.screen_ref.get_height()-120))
         )
         self.word = (
-            Text(resources.fonts["Kanit-Word"],f"{data["word"][0]}",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Word"],f"{data["word"][0]}",self.resources.get_current_assets()["normal-color"])
             .set_coordinate((self.screen_ref.get_rect().centerx,470),origin_center = True)
         )
         self.meaning = (
-            Text(resources.fonts["Kanit-Word"],f"{data["word"][1]}",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Word"],f"{data["word"][1]}",self.resources.get_current_assets()["normal-color"])
             .set_coordinate((self.screen_ref.get_rect().centerx,545),origin_center = True)
         )
 
     def render(self):
-        sad_pic = pygame.transform.scale_by(self.resources.assets[self.resources.members[self.resources.current_member]]["normal-images"][8],0.3)
+        sad_pic = pygame.transform.scale_by(self.resources.get_current_assets()["normal-images"][8],0.3)
         self.screen_ref.blit(
             sad_pic,
             (

@@ -56,7 +56,7 @@ class HangManPage(Page):
                 pass
             case _:
                 self.screen_ref.blit(
-                    pygame.transform.scale_by(self.resources.images[f"pupe-sad-{self.wrong_count}"],SCALE),
+                    pygame.transform.scale_by(self.resources.get_current_assets()["normal-images"][self.wrong_count],SCALE),
                     (
                         self.screen_ref.get_rect().centerx - pygame.transform.scale_by(self.resources.images[f"pupe-sad-{self.wrong_count}"],SCALE).get_rect().centerx,
                         90

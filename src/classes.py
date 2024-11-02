@@ -11,6 +11,8 @@ class Resource:
         self.fonts = font_list
     def add_images(self,images:dict[str,pygame.Surface]):
         self.images = images
+    def get_current_assets(self):
+        return self.assets[self.members[self.current_member]]
 class Redirect:
     def __init__(self,request="",data=None):
         self.request = request

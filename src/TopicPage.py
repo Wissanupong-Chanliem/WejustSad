@@ -13,11 +13,11 @@ class TopicPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource):
         Page.__init__(self,screen,resources)
         self.title_text = (
-            Text(resources.fonts["Kanit-Header-2"],"Classic Mode",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Header-2"],"Classic Mode",self.resources.get_current_assets()["normal-color"])
             .set_coordinate((100,60))
         )
         self.start_button = (
-            Button(580,40,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"],4)
+            Button(580,40,self.resources.get_current_assets()["normal-color"],4)
             .add_text(resources.fonts["Kanit-Regular"],"Start!!!",self.resources.colors["white"])
             .set_coordinate((self.screen_ref.get_width()-390,620),origin_center=True)
         )
@@ -61,11 +61,11 @@ class TopicPage(Page):
         self.show_word_list.render(self.screen_ref)
         self.selected_topic_text.render(self.screen_ref)
         if self.show_word == True:
-            pygame.draw.rect(self.screen_ref,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"], pygame.Rect(810, 87, 25, 25), 0, 6)
+            pygame.draw.rect(self.screen_ref,self.resources.get_current_assets()["normal-color"], pygame.Rect(810, 87, 25, 25), 0, 6)
             pygame.draw.rect(self.screen_ref,(0,0,0), pygame.Rect(810, 87, 25, 25), 2, 6)
         else:
             pygame.draw.rect(self.screen_ref,(0,0,0), pygame.Rect(810, 87, 25, 25), 2, 6)
-        pygame.draw.rect(self.screen_ref,self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"], pygame.Rect(400, 140, 580, 400), 2, 10)
+        pygame.draw.rect(self.screen_ref,self.resources.get_current_assets()["normal-color"], pygame.Rect(400, 140, 580, 400), 2, 10)
 
     def update(self, event: Event):
         mouse_pos = pygame.mouse.get_pos()

@@ -11,11 +11,11 @@ class WinPage(Page):
             .set_coordinate((100,40))
         )
         self.winning_text = (
-            Text(resources.fonts["Kanit-Word"],"ชนะแล้วหรอฮะ?",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Word"],"ชนะแล้วหรอฮะ?",self.resources.get_current_assets()["normal-color"])
             .set_coordinate((self.screen_ref.get_rect().centerx,90),origin_center=True)
         )
         self.klong_text = (
-            Text(resources.fonts["Kanit-Klong"],"เป็นไปได้ยังไงกันฮะ!!",self.resources.assets[self.resources.members[self.resources.current_member]]["normal-color"])
+            Text(resources.fonts["Kanit-Klong"],"เป็นไปได้ยังไงกันฮะ!!",self.resources.get_current_assets()["normal-color"])
             .set_coordinate((self.screen_ref.get_rect().centerx,self.screen_ref.get_height()-100),origin_center=True)
         )
         self.klong_pic = pygame.transform.scale_by((self.resources.images["klong"]),0.47)
