@@ -139,7 +139,7 @@ class Game():
             },
             "gnome":{
                 "normal-color":(118,205,38),
-                "hard-color":(255,222,33),
+                "hard-color":(255,192,0),
                 "normal-images":{
                     0 : pygame.image.load("static/images/HappyGnome.webp"),
                     1 : pygame.image.load("static/images/GnomeSad-1.webp"),
@@ -192,6 +192,7 @@ class Game():
                     6 : pygame.image.load("static/images/KlongSad_Hard-6.webp"),
                     7 : pygame.image.load("static/images/KlongSad_Hard-7.webp"),
                     8 : pygame.image.load("static/images/KlongSad_Hard-8.webp"),
+                    9 : pygame.image.load("static/images/KlongSad-Hard-9.png"),
                 }
             }
         return resources

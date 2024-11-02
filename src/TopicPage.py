@@ -6,6 +6,7 @@ from components.text import Text
 from components.button import Button
 from components.topicpage.topic_select import TopicList
 from function import random_word
+from function.open_file_selection import open_file_selection
 from function.read_word_list import read_word_list
 from function.read_wordlist_folder import read_wordlist_dir
 
@@ -64,6 +65,7 @@ class TopicPage(Page):
         else:
             pygame.draw.rect(self.screen_ref,(0,0,0), pygame.Rect(810, 87, 25, 25), 2, 6)
         pygame.draw.rect(self.screen_ref,self.resources.get_current_color(self.is_hard), pygame.Rect(400, 140, 580, 400), 2, 10)
+        Text(self.resources.fonts["Kanit-Regular"],"W"*33,self.resources.colors["black"]).set_coordinate((415,150)).render(self.screen_ref)
 
     def update(self, event: Event):
         mouse_pos = pygame.mouse.get_pos()
@@ -77,9 +79,11 @@ class TopicPage(Page):
             if self.start_button.button_rect.collidepoint(mouse_pos):
                 if self.topic_selection.get_selected():
                     word_list = list(random_word.random_word(read_word_list(f"static/wordlist/{self.topic_selection.get_selected()}.txt")).items())
-                    data = {"wordlist":word_list,"current_word":0,"is_hard":self.is_hard}
+                    data = {"wordlist":word_list,"current_word":0,"is_hard":self.is_hard,"current_sad":0}
                     self.redirect_with_data("HangMan",data)
             if self.back_to_main_menu.text_rect.collidepoint(mouse_pos):
                 self.redirect_to("MainMenu")
+            if self.add_wordlist_button.button_rect.collidepoint(mouse_pos):
+                open_file_selection()
         
         

@@ -12,7 +12,8 @@ from typing import TypeAlias
 data_in:TypeAlias = dict[
     "current_word":int,
     "wordlist":list[(str,str)],
-    "is_hard":bool
+    "is_hard":bool,
+    "current_sad":int
 ]
 SCALE = 0.28
 class HangManPage(Page):
@@ -22,7 +23,7 @@ class HangManPage(Page):
         self.word_list = data["wordlist"]
         self.current_key = ""
         self.kanan_num = data["current_word"]
-        self.wrong_count = 0
+        self.wrong_count = data["current_sad"]
         self.guessed = []
         self.word_status = check_answer.check_answer(self.word_list[self.kanan_num][0],"_"*len(self.word_list[self.kanan_num][0]),self.current_key)
         self.word = (
@@ -84,13 +85,13 @@ class HangManPage(Page):
                     current_status = check_answer.check_answer(self.word_list[self.kanan_num][0],self.word.text_str,self.current_key)
                     self.word.update_text(current_status).set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
                     if current_status == self.word_list[self.kanan_num][0]:
-                        self.wrong_count = 0
                         self.kanan_num += 1
                         data = {
                             "score":self.kanan_num,
                             "word":self.word_list[self.kanan_num-1],
                             "current_wordlist":self.word_list,
-                            "is_hard":self.is_hard
+                            "is_hard":self.is_hard,
+                            "current_sad":self.wrong_count
                         }
                         self.redirect_with_data("Answer",data)  
                 else:
