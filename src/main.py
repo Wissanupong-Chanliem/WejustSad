@@ -192,6 +192,7 @@ class Game():
                     6 : pygame.image.load("static/images/KlongSad_Hard-6.png"),
                     7 : pygame.image.load("static/images/KlongSad_Hard-7.png"),
                     8 : pygame.image.load("static/images/KlongSad_Hard-8.png"),
+                    9 : pygame.image.load("static/images/KlongSad-Hard-9.png"),
                 }
             }
         return resources
