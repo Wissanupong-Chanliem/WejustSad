@@ -65,4 +65,13 @@ class AnswerPage(Page):
                         self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":self.data["current_sad"]})
                     else:
                         self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":0})
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                if self.data["score"] >= len(self.data["current_wordlist"]):
+                    self.redirect_with_data("WinPage",{"is_hard":self.data["is_hard"]})
+                else:
+                    if self.data["is_hard"]:
+                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":self.data["current_sad"]})
+                    else:
+                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":0})
                 

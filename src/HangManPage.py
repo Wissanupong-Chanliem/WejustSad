@@ -111,3 +111,33 @@ class HangManPage(Page):
             if current_key.isalpha():
                 self.current_key = current_key
                 self.guess.update_text("\""+self.current_key+"\"").set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
+            if event.key == pygame.K_RETURN:
+                if self.current_key in self.guessed:
+                    return
+                self.guessed.append(self.current_key)
+                used_key(self.keyboard,self.current_key)
+                if self.current_key.lower() in self.word_list[self.kanan_num][0].lower():
+                    current_status = check_answer.check_answer(self.word_list[self.kanan_num][0],self.word.text_str,self.current_key)
+                    self.word.update_text(current_status).set_coordinate((self.screen_ref.get_rect().centerx,70),origin_center = True)
+                    if current_status == self.word_list[self.kanan_num][0]:
+                        self.kanan_num += 1
+                        data = {
+                            "score":self.kanan_num,
+                            "word":self.word_list[self.kanan_num-1],
+                            "current_wordlist":self.word_list,
+                            "is_hard":self.is_hard,
+                            "current_sad":self.wrong_count
+                        }
+                        self.redirect_with_data("Answer",data)  
+                else:
+                    self.wrong_count += 1
+                    self.image = pygame.transform.scale_by(self.resources.get_current_sprite(self.is_hard)[self.wrong_count],SCALE)
+                    if self.wrong_count >= len(self.resources.get_current_sprite(self.is_hard)) - 1:
+                        data = {
+                            "score":self.kanan_num,
+                            "word":self.word_list[self.kanan_num],
+                            "is_hard":self.is_hard
+                        }
+                        self.redirect_with_data("GameOver",data)
+                self.current_key = ""
+                self.guess.update_text("\""+self.current_key+"\"").set_coordinate((self.screen_ref.get_width()-200,500),origin_center=True)
