@@ -41,14 +41,16 @@ class MainMenuPage(Page):
                 #self.redirect_to("HardTopic")
                 self.redirect_with_data("Topic",{"is_hard":True})
             if self.arrow_right.collidepoint(pygame.mouse.get_pos()):
-                self.resources.current_member+=1
-                if self.resources.current_member > len(self.resources.members)-1:
-                    self.resources.current_member = 0
+                self.resources.change_character(1)
+                # self.resources.current_member+=1
+                # if self.resources.current_member > len(self.resources.members)-1:
+                #     self.resources.current_member = 0
                 self.__init__(self.screen_ref,self.resources)
             if self.arrow_left.collidepoint(pygame.mouse.get_pos()):
-                self.resources.current_member-=1
-                if self.resources.current_member < 0:
-                    self.resources.current_member = len(self.resources.members)-1
+                self.resources.change_character(-1)
+                # self.resources.current_member-=1
+                # if self.resources.current_member < 0:
+                #     self.resources.current_member = len(self.resources.members)-1
                 #print(self.resources.current_member)
                 self.__init__(self.screen_ref,self.resources)
                 #self.sad_pic = pygame.transform.scale_by((self.resources.get_current_assets()["normal-images"][8]),0.30)
