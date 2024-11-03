@@ -228,6 +228,6 @@ class Game():
             self.screen.fill(WHITE)
             current_page.render()
             pygame.display.update()
-
-main = Game()
-main.run()
+if __name__ == "__main__":
+    main = Game()
+    main.run()
