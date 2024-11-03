@@ -49,7 +49,7 @@ class TopicPage(Page):
             .set_coordinate((100,120))
         )
         self.show_word = False
-        self.word_list_box = ShowWordList("",resources,self.is_hard)
+        self.word_list_box = ShowWordList("",resources,self.is_hard,False)
 
     def render(self):
         self.title_text.render(self.screen_ref)
@@ -71,12 +71,14 @@ class TopicPage(Page):
     def update(self, event: Event):
         mouse_pos = pygame.mouse.get_pos()
         self.topic_selection.update(event)
+        self.word_list_box.update(event)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if pygame.Rect(810,87,25,25).collidepoint(mouse_pos):
                 if self.show_word == False:
                     self.show_word = True
                 else:
                     self.show_word = False
+                self.word_list_box.__init__(self.topic_selection.get_selected(),self.resources,self.is_hard,self.show_word)
             if self.start_button.button_rect.collidepoint(mouse_pos):
                 if self.topic_selection.get_selected():
                     word_list = list(random_word.random_word(read_word_list(f"static/wordlist/{self.topic_selection.get_selected()}.txt")).items())
@@ -87,5 +89,7 @@ class TopicPage(Page):
             if self.add_wordlist_button.button_rect.collidepoint(mouse_pos):
                 open_file_selection()
                 self.topic_selection.update_list(read_wordlist_dir())
+        if self.topic_selection.has_changed():
+            self.word_list_box.__init__(self.topic_selection.get_selected(),self.resources,self.is_hard,self.show_word)
         
         

@@ -9,9 +9,7 @@ def sort_word(word,row_size):
             now = row_size-lenght
         else:
             temp.append(w)
+            now -= lenght
     if temp:
         new_word.append(temp)
-    for i in new_word:
-        print(i)
-
-sort_word({"word":24,"longergerger": 230,"longest":400,"loooooong":280,"short":30},300)
+    return new_word
