@@ -19,12 +19,12 @@ class ShowWordList():
         # self.border = pygame.Surface((580,400))
         # self.is_hard = is_hard
         # self.topics_elements:list[Button] = []
-        for i,topic in enumerate(topics.items()):
-            self.topics_elements.append(
-                Button(250,80,(0,0,0),5,1)
-                .add_text(self.resources.fonts["Kanit-Regular"],topic[0],(0,0,0))
-                .set_coordinate((0,(i*90)))
-            )
+        # for i,topic in enumerate(topics.items()):
+        #     self.topics_elements.append(
+        #         Button(250,80,(0,0,0),5,1)
+        #         .add_text(self.resources.fonts["Kanit-Regular"],topic[0],(0,0,0))
+        #         .set_coordinate((0,(i*90)))
+        #     )
         # self.offset = 0
         # self.selected = -1
         self.text = Text(self.resources.fonts["Kanit-Regular"],"W"*33,self.resources.colors["black"]).set_coordinate((415,150))
