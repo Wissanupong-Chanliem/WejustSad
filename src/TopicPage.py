@@ -5,11 +5,11 @@ from classes import Page,Resource
 from components.text import Text
 from components.button import Button
 from components.topicpage.topic_select import TopicList
+from components.topicpage.show_word_list import ShowWordList
 from function import random_word
 from function.open_file_selection import open_file_selection
 from function.read_word_list import read_word_list
 from function.read_wordlist_folder import read_wordlist_dir
-
 data_in:TypeAlias = dict[
     "is_hard":bool,
 ]
@@ -49,6 +49,7 @@ class TopicPage(Page):
             .set_coordinate((100,120))
         )
         self.show_word = False
+        self.word_list_box = ShowWordList("",resources,self.is_hard)
 
     def render(self):
         self.title_text.render(self.screen_ref)
@@ -64,8 +65,8 @@ class TopicPage(Page):
             pygame.draw.rect(self.screen_ref,(0,0,0), pygame.Rect(810, 87, 25, 25), 2, 6)
         else:
             pygame.draw.rect(self.screen_ref,(0,0,0), pygame.Rect(810, 87, 25, 25), 2, 6)
-        pygame.draw.rect(self.screen_ref,self.resources.get_current_color(self.is_hard), pygame.Rect(400, 140, 580, 400), 2, 10)
-        Text(self.resources.fonts["Kanit-Regular"],"W"*33,self.resources.colors["black"]).set_coordinate((415,150)).render(self.screen_ref)
+        #pygame.draw.rect(self.screen_ref,self.resources.get_current_color(self.is_hard), pygame.Rect(400, 140, 580, 400), 2, 10)
+        self.word_list_box.render(self.screen_ref)
 
     def update(self, event: Event):
         mouse_pos = pygame.mouse.get_pos()

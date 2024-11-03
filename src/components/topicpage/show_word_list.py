@@ -1,0 +1,64 @@
+import pygame
+import pygame.draw_py
+
+from components.text import Text
+from function.read_word_list import read_word_list
+from ..button import Button
+from classes import Resource
+from pygame.event import Event
+class ShowWordList():
+    def __init__(
+        self,
+        current_word_list:str,
+        resources:Resource,
+        is_hard:bool
+    ):
+        self.resources = resources
+        self.is_hard = is_hard
+        self.word_list = read_word_list(f"static/wordlist/{current_word_list}.txt") if current_word_list else {}
+        # self.border = pygame.Surface((580,400))
+        # self.is_hard = is_hard
+        # self.topics_elements:list[Button] = []
+        for i,topic in enumerate(topics.items()):
+            self.topics_elements.append(
+                Button(250,80,(0,0,0),5,1)
+                .add_text(self.resources.fonts["Kanit-Regular"],topic[0],(0,0,0))
+                .set_coordinate((0,(i*90)))
+            )
+        # self.offset = 0
+        # self.selected = -1
+        self.text = Text(self.resources.fonts["Kanit-Regular"],"W"*33,self.resources.colors["black"]).set_coordinate((415,150))
+    def render(self,screen:pygame.Surface):
+        pygame.draw.rect(screen,self.resources.get_current_color(self.is_hard), pygame.Rect(400, 140, 580, 400), 2, 10)
+        self.text.render(screen)
+        # self.border.fill((255,255,255))
+        # for i in range(len(self.topics_elements)):
+        #     self.topics_elements[i].set_coordinate((0,(i*90)-self.offset))
+        #     self.topics_elements[i].render(self.border)
+        #     if i == self.selected:
+        #         pygame.draw.rect(self.border,self.resources.get_current_color(self.is_hard),(0,(i*90)-self.offset,250,80),5,5)
+        # pygame.draw.rect(
+        #     self.border,
+        #     self.resources.get_current_color(self.is_hard),
+        #     (self.border.get_rect().right,(self.offset/len(self.topics_elements)*90)*self.border.get_rect().bottom,250,80),
+        #     5,
+        #     5
+        # )
+        # screen.blit(self.border,(100,180))
+
+    def update(self,event:Event):
+        pass
+        # if event.type == pygame.MOUSEWHEEL:
+        #     self.offset += -event.y*30
+        #     if self.offset < 0 :
+        #         self.offset = 0
+        #     highest_offset = (len(self.topics_elements) - min(len(self.topics_elements),4)) * 90
+        #     if self.offset > highest_offset:
+        #         self.offset = highest_offset
+                    
+        # elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+        #     clicked_pos = pygame.mouse.get_pos()
+        #     clicked_pos = (clicked_pos[0]-100,clicked_pos[1]-180)
+        #     for i,topic in enumerate(self.topics_elements):
+        #         if topic.button_rect.collidepoint(clicked_pos):
+        #             self.selected = i

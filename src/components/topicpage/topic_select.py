@@ -40,12 +40,14 @@ class TopicList():
 
     def update(self,event:Event):
         if event.type == pygame.MOUSEWHEEL:
-            self.offset += -event.y*30
-            if self.offset < 0 :
-                self.offset = 0
-            highest_offset = (len(self.topics_elements) - min(len(self.topics_elements),4)) * 90
-            if self.offset > highest_offset:
-                self.offset = highest_offset
+            mouse_pos = pygame.mouse.get_pos()
+            if pygame.Rect(100,180,250,360).collidepoint(mouse_pos):
+                self.offset += -event.y*30
+                if self.offset < 0 :
+                    self.offset = 0
+                highest_offset = (len(self.topics_elements) - min(len(self.topics_elements),4)) * 90
+                if self.offset > highest_offset:
+                    self.offset = highest_offset
                     
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             clicked_pos = pygame.mouse.get_pos()
