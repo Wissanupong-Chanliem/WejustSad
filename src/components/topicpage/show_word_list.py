@@ -35,7 +35,6 @@ class ShowWordList():
                 .add_text(self.resources.fonts["Kanit-Regular"],word_str,(0,0,0),auto_readjust=True,padding=20)
             )
             sorting_element[word_str] = self.word_elements[word_str].button_rect.width + 10
-        print(sorting_element)
         self.lines = sort_word(sorting_element,560)
         self.offset = 0
         self.text = Text(self.resources.fonts["Kanit-Regular"],"W"*33,self.resources.colors["black"]).set_coordinate((415,150))
