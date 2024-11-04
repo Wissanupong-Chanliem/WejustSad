@@ -10,7 +10,8 @@ data_in:TypeAlias = dict[
     "word":str,
     "current_wordlist":list[(str,str)],
     "is_hard":bool,
-    "current_sad":int
+    "current_sad":int,
+    "is_builtin":bool
 ]
 class AnswerPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource,data:data_in):
@@ -59,19 +60,19 @@ class AnswerPage(Page):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.next_button.button_rect.collidepoint(pygame.mouse.get_pos()):
                 if self.data["score"] >= len(self.data["current_wordlist"]):
-                    self.redirect_with_data("WinPage",{"is_hard":self.data["is_hard"]})
+                    self.redirect_with_data("WinPage",{"is_hard":self.data["is_hard"],"is_builtin":self.data["is_builtin"]})
                 else:
                     if self.data["is_hard"]:
-                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":self.data["current_sad"]})
+                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":self.data["current_sad"],"is_builtin":self.data["is_builtin"]})
                     else:
-                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":0})
+                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":0,"is_builtin":self.data["is_builtin"]})
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 if self.data["score"] >= len(self.data["current_wordlist"]):
-                    self.redirect_with_data("WinPage",{"is_hard":self.data["is_hard"]})
+                    self.redirect_with_data("WinPage",{"is_hard":self.data["is_hard"],"is_builtin":self.data["is_builtin"]})
                 else:
                     if self.data["is_hard"]:
-                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":self.data["current_sad"]})
+                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":self.data["current_sad"],"is_builtin":self.data["is_builtin"]})
                     else:
-                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":0})
+                        self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":0,"is_builtin":self.data["is_builtin"]})
                 

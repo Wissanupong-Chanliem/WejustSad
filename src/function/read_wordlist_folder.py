@@ -1,8 +1,8 @@
 import os
-def read_wordlist_dir():
+
+def read_user_wordlist_dir():
     text_files = {}
-    for x in os.listdir("static/wordlist"):
+    for x in os.listdir("wordlist"):
         if x.endswith(".txt"):
-            # Prints only text file present in My Folder
-            text_files[x.removesuffix(".txt")] = "static/wordlist/" + x
+            text_files[x.removesuffix(".txt")] = "wordlist/" + x
     return text_files

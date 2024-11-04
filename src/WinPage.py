@@ -7,13 +7,14 @@ from function.encrypt_decrypt import add_klong,check_klong
 
 data_in:TypeAlias = dict[
     "is_hard":bool,
+    "is_builtin":bool
 ]
 
 class WinPage(Page):
     def __init__(self,screen:pygame.Surface,resources:Resource,data:data_in):
         Page.__init__(self,screen,resources)
         self.check = 0
-        if not check_klong():
+        if data["is_builtin"] and not check_klong():
             add_klong()
             self.check = 1
             resources.members.append("klong")

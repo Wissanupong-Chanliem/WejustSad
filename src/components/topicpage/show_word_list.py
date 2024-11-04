@@ -10,7 +10,7 @@ from function.sort_word import sort_word
 class ShowWordList():
     def __init__(
         self,
-        current_word_list:str,
+        current_word_list:dict[str,str],
         resources:Resource,
         is_hard:bool,
         view:bool
@@ -18,7 +18,7 @@ class ShowWordList():
         self.resources = resources
         self.is_hard = is_hard
         self.viewing = view
-        self.word_list = read_word_list(f"static/wordlist/{current_word_list}.txt") if current_word_list else {}
+        self.word_list = current_word_list
         self.border = pygame.Surface((580, 410))
         self.word_elements:dict[str,Button] = {}
         sorting_element:dict[str,int] = {}
