@@ -223,7 +223,7 @@ class Game():
                 if event.type == pygame.QUIT:
                     running = False
                     pygame.quit()
-                    quit()
+                    return
                 current_page.update(event)
             self.screen.fill(WHITE)
             current_page.render()

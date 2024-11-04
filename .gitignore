@@ -1,3 +1,5 @@
 __pycache__
 dependencies.txt
 achievement/achievement_k.txt
+main.spec
+build/
