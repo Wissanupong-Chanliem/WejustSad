@@ -22,6 +22,7 @@ class TopicList():
             )
         self.offset = 0
         self.selected = -1
+        self.change = False
     def render(self,screen:pygame.Surface):
         self.border.fill((255,255,255))
         for i in range(len(self.topics_elements)):
@@ -40,12 +41,14 @@ class TopicList():
 
     def update(self,event:Event):
         if event.type == pygame.MOUSEWHEEL:
-            self.offset += -event.y*30
-            if self.offset < 0 :
-                self.offset = 0
-            highest_offset = (len(self.topics_elements) - min(len(self.topics_elements),4)) * 90
-            if self.offset > highest_offset:
-                self.offset = highest_offset
+            mouse_pos = pygame.mouse.get_pos()
+            if pygame.Rect(100,180,250,360).collidepoint(mouse_pos):
+                self.offset += -event.y*30
+                if self.offset < 0 :
+                    self.offset = 0
+                highest_offset = (len(self.topics_elements) - min(len(self.topics_elements),4)) * 90
+                if self.offset > highest_offset:
+                    self.offset = highest_offset
                     
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             clicked_pos = pygame.mouse.get_pos()
@@ -53,6 +56,7 @@ class TopicList():
             for i,topic in enumerate(self.topics_elements):
                 if topic.button_rect.collidepoint(clicked_pos):
                     self.selected = i
+                    self.change = True
         
     def get_selected(self):
         if self.selected != -1:
@@ -66,3 +70,8 @@ class TopicList():
                 .add_text(self.resources.fonts["Kanit-Regular"],topic[0],(0,0,0))
                 .set_coordinate((0,(i*90)))
             )
+    def has_changed(self):
+        if not self.change:
+            return self.change
+        self.change = False
+        return True

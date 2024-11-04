@@ -28,13 +28,19 @@ class Button():
         font:pygame.font.Font,
         text:str,
         color:tuple[int,int,int],
-        center = True
+        center = True,
+        auto_readjust = False,
+        padding = 0
     ):
         self.text = text
         self.text_image = font.render(text,True,color)
+        if auto_readjust and self.text_image.get_width() > (self.button_rect.right-self.button_rect.left):
+            self.button_rect.width = self.text_image.get_width() + padding * 2
         self.text_rect = self.text_image.get_rect()
         if center:
             self.text_rect.center = self.button_rect.center
+        else:
+            self.text_rect.topleft = self.button_rect.topleft
         return self
 
     def set_coordinate(self,coordinate:tuple[int,int],origin_center=False):

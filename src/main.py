@@ -6,6 +6,7 @@ from TopicPage import TopicPage
 from HangManPage import HangManPage
 from GameOverPage import GameOverPage
 from AnswerPage import AnswerPage
+from function.encrypt_decrypt import check_klong
 WHITE = (255, 255, 255)
 
 class Game():
@@ -165,7 +166,7 @@ class Game():
             },
         }
         resources.members = ["pupe","arse","akita","penguin","gnome"]
-        if True:
+        if check_klong():
             resources.members.append("klong")
             resources.assets["klong"] = {
                 "normal-color":(255,170,0),
@@ -227,6 +228,6 @@ class Game():
             self.screen.fill(WHITE)
             current_page.render()
             pygame.display.update()
-
-main = Game()
-main.run()
+if __name__ == "__main__":
+    main = Game()
+    main.run()

@@ -5,6 +5,7 @@
     "run":"python src/main.py",
     "dependencies":[
         "pythainlp",
-        "keyboardlayout"
+        "keyboardlayout",
+        "cryptography"
     ]
 }
