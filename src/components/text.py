@@ -35,6 +35,3 @@ class Text():
             self.text_rect.topleft = old_pos
         self.text_str = text
         return self
-
-        
-
