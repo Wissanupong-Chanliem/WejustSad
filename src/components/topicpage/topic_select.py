@@ -4,6 +4,7 @@ from ..button import Button
 from classes import Resource
 from pygame.event import Event
 from function.read_word_list import read_word_list
+from .scrollbar import ScrollBar
 class TopicList():
     def __init__(
         self,
@@ -29,6 +30,7 @@ class TopicList():
             ))
         self.offset = 0
         self.selected = -1
+        self.scrollbar = ScrollBar((360,180),10,350,(219, 219, 219),(176, 176, 176))
         self.change = False
     def render(self,screen:pygame.Surface):
         self.border.fill((255,255,255))
@@ -45,8 +47,12 @@ class TopicList():
             5
         )
         screen.blit(self.border,(100,180))
+        self.scrollbar.render(screen)
 
     def update(self,event:Event):
+        self.scrollbar.update(event)
+        if self.scrollbar.has_changed():
+            self.offset = self.scrollbar.get_offset_percentage() * (len(self.topics_elements) - min(len(self.topics_elements),4)) * 90
         if event.type == pygame.MOUSEWHEEL:
             mouse_pos = pygame.mouse.get_pos()
             if pygame.Rect(100,180,250,360).collidepoint(mouse_pos):
@@ -56,15 +62,19 @@ class TopicList():
                 highest_offset = (len(self.topics_elements) - min(len(self.topics_elements),4)) * 90
                 if self.offset > highest_offset:
                     self.offset = highest_offset
+                self.scrollbar.set_scroll_dist(self.offset/highest_offset)
                     
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             clicked_pos = pygame.mouse.get_pos()
             clicked_pos = (clicked_pos[0]-100,clicked_pos[1]-180)
             for i,topic in enumerate(self.topics_elements):
                 if topic[0].button_rect.collidepoint(clicked_pos):
-                    self.selected = i
-                    self.change = True
-        
+                    self.set_selected(i)
+
+    def set_selected(self,index:int):
+        self.selected = index
+        self.change = True
+
     def get_selected(self):
         if self.selected != -1:
             if isinstance(self.topics_elements[self.selected][1],str):
@@ -98,11 +108,17 @@ class TopicList():
                 .add_text(self.resources.fonts["Kanit-Regular"],topic[0],(0,0,0)),
                 topic[1]
             ))
+        highest_offset = (len(self.topics_elements) - min(len(self.topics_elements),4)) * 90
+        if self.offset > highest_offset:
+            self.offset = highest_offset
+        self.scrollbar.set_scroll_dist(self.offset/highest_offset)
+
     def has_changed(self):
         if not self.change:
             return self.change
         self.change = False
         return True
+
 
 BUILT_IN_WORDLIST = {
     "Animals": {

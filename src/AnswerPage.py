@@ -75,4 +75,3 @@ class AnswerPage(Page):
                         self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":self.data["current_sad"],"is_builtin":self.data["is_builtin"]})
                     else:
                         self.redirect_with_data("HangMan",{"current_word":self.data["score"],"wordlist":self.data["current_wordlist"],"is_hard":self.data["is_hard"],"current_sad":0,"is_builtin":self.data["is_builtin"]})
-                

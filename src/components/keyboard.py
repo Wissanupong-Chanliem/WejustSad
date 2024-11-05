@@ -2,7 +2,7 @@ import keyboardlayout as kl
 import keyboardlayout.pygame as klp
 import pygame
 import classes
-# This is black magic, I don't know what I'm doing
+
 def get_keyboard(resource:classes.Resource,is_hard:bool) -> klp.KeyboardLayout:
     key_size = 60
     keyboard_info = kl.KeyboardInfo(
@@ -17,7 +17,7 @@ def get_keyboard(resource:classes.Resource,is_hard:bool) -> klp.KeyboardLayout:
         txt_font=pygame.font.Font("static/font/Kanit-Regular.ttf", key_size//3),
         txt_padding=(key_size//6, key_size//10)
     )
-    letter_key_size = (key_size, key_size)  # width, height
+    letter_key_size = (key_size, key_size)
     keyboard_layout = klp.KeyboardLayout(
         kl.LayoutName.QWERTY,
         keyboard_info,
@@ -27,7 +27,7 @@ def get_keyboard(resource:classes.Resource,is_hard:bool) -> klp.KeyboardLayout:
     show_key = kl.KeyInfo(
         margin=5,
         color=resource.get_current_color(is_hard),
-        txt_color=(255,255,255),  # invert grey
+        txt_color=(255,255,255),
         txt_font=pygame.font.Font("static/font/Kanit-Regular.ttf", key_size//3),
         txt_padding=(key_size//6, key_size//10)
     )
@@ -44,7 +44,7 @@ def used_key(layout:klp.KeyboardLayout,pressed_key:str):
     disable_key = kl.KeyInfo(
         margin=5,
         color=grey,
-        txt_color=(255,255,255),  # invert grey
+        txt_color=(255,255,255),
         txt_font=pygame.font.Font("static/font/Kanit-Regular.ttf", key_size//3),
         txt_padding=(key_size//6, key_size//10)
     )

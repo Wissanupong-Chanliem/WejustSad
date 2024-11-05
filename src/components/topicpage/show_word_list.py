@@ -7,6 +7,7 @@ from ..button import Button
 from classes import Resource
 from pygame.event import Event
 from function.sort_word import sort_word
+from .scrollbar import ScrollBar
 class ShowWordList():
     def __init__(
         self,
@@ -22,6 +23,7 @@ class ShowWordList():
         self.border = pygame.Surface((580, 410))
         self.word_elements:dict[str,Button] = {}
         sorting_element:dict[str,int] = {}
+        self.scrollbar = ScrollBar((960,140),10,390,(219, 219, 219),(176, 176, 176))
         for word in self.word_list.keys():
             word_str = word
             check = 0
@@ -50,8 +52,11 @@ class ShowWordList():
                 offset += 50
             screen.blit(self.border,(400, 130))
         pygame.draw.rect(screen,self.resources.get_current_color(self.is_hard), pygame.Rect(400, 130, 580, 410), 2, 10)
-
+        self.scrollbar.render(screen)
     def update(self,event:Event):
+        self.scrollbar.update(event)
+        if self.scrollbar.has_changed():
+            self.offset = self.scrollbar.get_offset_percentage() * (len(self.lines) - min(len(self.lines),8)) * 50
         if event.type == pygame.MOUSEWHEEL and self.viewing:
             mouse_pos = pygame.mouse.get_pos()
             if pygame.Rect(400, 130, 580, 410).collidepoint(mouse_pos):
@@ -61,4 +66,4 @@ class ShowWordList():
                 highest_offset = (len(self.lines) - min(len(self.lines),8)) * 50
                 if self.offset > highest_offset:
                     self.offset = highest_offset
-
+                self.scrollbar.set_scroll_dist(self.offset/((len(self.lines) - min(len(self.lines),8)) * 50))

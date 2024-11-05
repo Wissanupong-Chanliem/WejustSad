@@ -13,6 +13,7 @@ def open_file_selection():
         messagebox.showerror('Error', 'Error: ไฟล์ผิด format นะจ๊ะ อิอิ!')
         return
     shutil.copy2(file,"wordlist")
+    return os.path.basename(file).removesuffix(".txt")
 
 def check_format(file:str):
     txt = open(file,"r",encoding="utf-8")

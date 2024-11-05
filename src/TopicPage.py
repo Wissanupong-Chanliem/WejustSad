@@ -99,13 +99,17 @@ class TopicPage(Page):
                 self.redirect_to("MainMenu")
 
             if self.add_wordlist_button.button_rect.collidepoint(mouse_pos):
-                open_file_selection()
+                topic_name = open_file_selection()
                 self.topic_selection.update_list(read_user_wordlist_dir())
+                for i,(button,_) in enumerate(reversed(self.topic_selection.topics_elements)):
+                    if button.text == topic_name:
+                        self.topic_selection.set_selected((len(self.topic_selection.topics_elements) - 1) - i)
 
             if self.remove_wordlist_button.button_rect.collidepoint(mouse_pos):
                 path = self.topic_selection.get_selected_path()
                 if path:
                     remove_wordlist(path)
+                    self.topic_selection.set_selected(-1)
                     self.topic_selection.update_list(read_user_wordlist_dir())
 
         if self.topic_selection.has_changed():
