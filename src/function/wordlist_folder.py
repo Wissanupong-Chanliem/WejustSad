@@ -2,6 +2,8 @@ from tkinter import filedialog as fd
 from tkinter import *
 from tkinter import messagebox
 import shutil
+import os
+from tkinter.messagebox import askyesno
 
 def open_file_selection():
     file = fd.askopenfilename(initialdir="/", title="Select file", filetypes=[("Text Files","*.txt")])
@@ -26,4 +28,6 @@ def check_format(file:str):
     return 0
 
 def remove_wordlist(path:str):
-    pass
+    answer = askyesno(title='delete',message='จะลบจริงหรอจ๊ะ?')
+    if os.path.exists(path) and answer:
+        os.remove(path)
