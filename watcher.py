@@ -19,6 +19,8 @@ def install_dependencies(dependencies_list:list[str]):
 def watch():
     with open('watcher.json', 'r') as file:
         watcher_setting = json.load(file)
+    if not os.path.exists("wordlist"):
+        os.mkdir("wordlist")
     install_dependencies(watcher_setting["dependencies"])
     watch_list = {}
     for directory in watcher_setting["watchlist"]:
