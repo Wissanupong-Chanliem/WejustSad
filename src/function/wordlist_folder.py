@@ -10,7 +10,7 @@ def open_file_selection():
     if not file:
         return
     if check_format(file):
-        messagebox.showerror('Error', 'Error: ไฟล์ผิด format นะจ๊ะ อิอิ!')
+        messagebox.showerror('Error', 'Error: ไฟล์ผิด format นะจ๊ะ อิอิ!\nFormat ที่ถูกต้อง:\nคำ = ความหมาย\nบรรทัดละ 1 คำ')
         return
     shutil.copy2(file,"wordlist")
     return os.path.basename(file).removesuffix(".txt")

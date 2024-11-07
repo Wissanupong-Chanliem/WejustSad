@@ -60,10 +60,13 @@ class ShowWordList():
         if event.type == pygame.MOUSEWHEEL and self.viewing:
             mouse_pos = pygame.mouse.get_pos()
             if pygame.Rect(400, 130, 580, 410).collidepoint(mouse_pos):
-                self.offset += -event.y*30
-                if self.offset < 0 :
-                    self.offset = 0
                 highest_offset = (len(self.lines) - min(len(self.lines),8)) * 50
-                if self.offset > highest_offset:
+                self.offset += -event.y*30
+                if self.offset <= 0 :
+                    self.offset = 0
+                    self.scrollbar.set_scroll_dist(0)
+                elif self.offset >= highest_offset:
                     self.offset = highest_offset
-                self.scrollbar.set_scroll_dist(self.offset/((len(self.lines) - min(len(self.lines),8)) * 50))
+                    self.scrollbar.set_scroll_dist(1)
+                else:
+                    self.scrollbar.set_scroll_dist(self.offset/highest_offset)
