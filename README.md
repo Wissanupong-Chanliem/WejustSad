@@ -1,4 +1,4 @@
-# We Just Sad
+# {v}JustSad
 ## Installation
 ### 1. Download from Google Drive
    link: https://drive.google.com/file/d/1nL-UkcrsD_6IHww6uBbFkYs-rp31z8SJ/view?usp=drive_link
